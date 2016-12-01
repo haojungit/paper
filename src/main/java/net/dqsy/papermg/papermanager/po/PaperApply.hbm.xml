@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="net.dqsy.papermg.papermanager.po.PaperApply"
+		table="paper_apply" catalog="paper">
+		<id name="aplyId" type="integer">
+			<column name="AplyID" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="paperTitle"
+                     class="net.dqsy.papermg.papermanager.po.PaperTitle" lazy="false"
+                     fetch="select">
+			<column name="titleId" />
+		</many-to-one>
+		<property name="applyReason" type="string">
+			<column name="applyReason" length="1024" />
+		</property>
+		<property name="applyDate" type="java.util.Date">
+			<column name="applyDate" length="32" />
+		</property>
+		<property name="score" type="string">
+			<column name="Score" length="24" />
+		</property>
+		<property name="allowReply" type="string">
+			<column name="allowReply" length="1" />
+		</property>
+		<property name="inpuDate" type="java.util.Date">
+			<column name="inpuDate" length="24" />
+		</property>
+		<property name="flag" type="integer">
+			<column name="flag" length="1" />
+		</property>
+	</class>
+</hibernate-mapping>

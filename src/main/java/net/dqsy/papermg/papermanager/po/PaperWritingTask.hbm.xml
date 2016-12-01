@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="net.dqsy.papermg.papermanager.po.PaperWritingTask"
+		table="paper_writingtask" catalog="paper">
+		<id name="writingTaskID" type="integer">
+			<column name="writingTaskID" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="paperTitle" lazy="false" fetch="select">
+			<column name="WritingTaskTitleId" not-null="true" />
+		</many-to-one>
+		<property name="writingTaskStartTime" type="java.util.Date">
+			<column name="writingTaskStartTime" length="24" />
+		</property>
+		<property name="writingTaskEndTime" type="java.util.Date">
+			<column name="writingTaskEndTime" length="24" />
+		</property>
+		<property name="writingTaskContent" type="string">
+			<column name="writingTaskContent" length="1024" />
+		</property>
+		<property name="writingTaskReference" type="string">
+			<column name="writingTaskReference" length="1024" />
+		</property>
+		<property name="writingTaskFlag" type="integer">
+			<column name="writingTaskFlag" />
+		</property>
+		<property name="writingTaskcol" type="string">
+			<column name="writingTaskcol" length="1024" />
+		</property>
+		<property name="writingTaskcol1" type="string">
+			<column name="writingTaskcol1" length="1024" />
+		</property>
+		<set name="paperPlans" inverse="true" lazy="false">
+			<key>
+				<column name="PlanWritingTaskId" not-null="true" />
+			</key>
+			<one-to-many class="net.dqsy.papermg.papermanager.po.PaperPlan" />
+		</set>
+	</class>
+</hibernate-mapping>

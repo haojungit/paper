@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+
+		<!-- c3p0相关配置 -->
+		<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+		<property name="c3p0.min_size">5</property> <!--连接池最小连接数 -->
+		<property name="c3p0.max_size">20</property> <!-- 最大连接数 -->
+		<property name="c3p0.timeout">5000</property> <!--超时时长 -->
+		<property name="c3p0.max_statements">100</property> <!--最多缓存的语句数量 -->
+
+		<property name="c3p0.acquire_increment">2</property>
+		<property name="c3p0.idle_test_period">5000</property>
+		<property name="autoReconnect">true</property>
+		<property name="maxIdleTime">28000</property>
+		<property name="idleConnectionTestPeriod">28000</property>
+		<property name="testConnectionOnCheckout">true</property>
+
+		<!-- c3p0相关配置到此结束 -->
+
+		<!-- 各属性的配置 -->
+		<!-- 为true表示将Hibernate发送给数据库的sql显示出来 -->
+		<property name="show_sql">true</property>
+
+		<property name="format_sql">true</property>
+		
+
+		<!-- 自动提交 -->
+		<property name="connection.autocommit">false </property>
+
+		<!-- SQL方言，这边设定的是MySQL -->
+
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+		<!--驱动程序 -->
+
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+
+		<!-- JDBC URL -->
+
+		<property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/paper?
+
+			characterEncoding=utf-8</property>
+
+		<!-- 数据库用户名 -->
+
+		<property name="hibernate.connection.username">root</property>
+
+		<!-- 数据库密码 -->
+
+		<property name="hibernate.connection.password">1234</property>
+
+		<!-- 映射文件 -->
+
+		<mapping resource="net/dqsy/papermg/sysmanager/po/PaperStudent.hbm.xml" />
+		<mapping resource="net/dqsy/papermg/sysmanager/po/PaperTeacher.hbm.xml" />
+
+		<mapping resource="net/dqsy/papermg/sysmanager/po/PaperUser.hbm.xml" />
+		<mapping resource="net/dqsy/papermg/sysmanager/po/PaperRole.hbm.xml" />
+		<mapping resource="net/dqsy/papermg/sysmanager/po/PaperPermission.hbm.xml" />
+		<mapping resource="net/dqsy/papermg/sysmanager/po/PaperUserRole.hbm.xml" />
+		<mapping
+			resource="net/dqsy/papermg/sysmanager/po/PaperRolePermission.hbm.xml" />
+
+		<mapping resource="net/dqsy/papermg/papermanager/po/PaperTitle.hbm.xml" />
+		<mapping resource="net/dqsy/papermg/papermanager/po/PaperTitleState.hbm.xml" />
+		<mapping
+			resource="net/dqsy/papermg/papermanager/po/PaperThesisProposal.hbm.xml" />
+		<mapping
+			resource="net/dqsy/papermg/papermanager/po/PaperGuidancerecord.hbm.xml" />
+		<mapping resource="net/dqsy/papermg/papermanager/po/PaperMidcheck.hbm.xml" />
+		<mapping
+			resource="net/dqsy/papermg/papermanager/po/PaperWritingTask.hbm.xml" />
+		<mapping resource="net/dqsy/papermg/papermanager/po/PaperApply.hbm.xml" />
+
+		<mapping resource="net/dqsy/papermg/papermanager/po/PaperPlan.hbm.xml" />
+		<mapping resource="net/dqsy/papermg/papermanager/po/PaperCouncil.hbm.xml" />
+		<mapping resource="net/dqsy/papermg/papermanager/po/PaperCouncilman.hbm.xml" />
+		<mapping resource="net/dqsy/papermg/papermanager/po/PaperRecord.hbm.xml" />
+		<mapping resource="net/dqsy/papermg/papermanager/po/PaperScore.hbm.xml" />
+		<mapping resource="net/dqsy/papermg/sysmanager/po/PaperMessage.hbm.xml" />
+
+		<mapping resource="net/dqsy/papermg/sysmanager/vo/Login.hbm.xml" />
+
+	</session-factory>
+
+</hibernate-configuration>

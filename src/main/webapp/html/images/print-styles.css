@@ -1,0 +1,43 @@
+@media print {
+
+
+table .print  {/* 在需要打印的div或table里加个class=print即可 */
+	display:block;
+}
+
+.noprint {display:none}/* 如果需要打印的div或table里有不需要显示的内容，加个class=noprint即可 */
+
+
+table.print div  {/*如果需要打印的table下含有div，则将div恢复显示 */
+	display:block;
+}
+
+div.print table  {/*如果需要打印的div下含有table，则将table恢复显示 */
+	display:block;
+}
+
+/*以下可以设置打印内容的样式 */
+
+table.print {
+	border-collapse:collapse;
+}
+
+table.print td {
+	border:1px solid #000000;
+	font:Verdana, Arial, Helvetica, sans-serif;
+	font-size:10pt;
+}
+
+div.print {
+
+}
+table textarea{width:480pt;height:200pt;border:0 ;}
+table input{width:80pt;border:0 ;}
+h3{font-size:18pt; text-align:center}
+.print-tc{ text-align:center}
+
+.print-w30{width:26pt}
+.print-left{ text-align:left}
+.left5{padding-left:5px;}
+.print-li24{ line-height:18pt}
+.left10{padding:10px ;line-height:18pt}

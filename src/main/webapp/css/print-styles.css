@@ -1,0 +1,79 @@
+@charset "utf-8";
+
+@media print {
+	/* 在需要打印的div或table里加个class=print即可 */
+	table .print {
+		display: block;
+	}
+
+	/* 如果需要打印的div或table里有不需要显示的内容，加个class=noprint即可 */
+	.noprint {
+		display: none
+	}
+
+	/* 在打印时需要显示的地方加上 */
+	.onprint {
+		display: block !important;
+	}
+
+	/*如果需要打印的table下含有div，则将div恢复显示 */
+	table.print div {
+		display: block;
+	}
+
+	/*如果需要打印的div下含有table，则将table恢复显示 */
+	div.print table {
+		display: block;
+	}
+
+	/*以下可以设置打印内容的样式 */
+	table.print {
+		border-collapse: collapse;
+	}
+	table.print td {
+		border: 1px solid #000000;
+		font: Verdana, Arial, Helvetica, sans-serif;
+		font-size: 10pt;
+	}
+	div.print {
+		
+	}
+	span {
+		border: 0 !important;
+	}
+	span .combo-arrow {
+		height: 0px;
+	}
+	table textarea {
+		width: 480pt;
+		border: 0;
+	}
+	table input {
+		width: 80pt;
+		border: 0;
+		text-align: center !important;
+	}
+	h3 {
+		font-size: 18pt;
+		text-align: center
+	}
+	.print-tc {
+		text-align: center
+	}
+	.print-w30 {
+		width: 26pt
+	}
+	.print-left {
+		text-align: left
+	}
+	.left5 {
+		padding-left: 5px;
+	}
+	.print-li24 {
+		line-height: 18pt
+	}
+	.left10 {
+		padding: 5px;
+		line-height: 15pt
+	}
+}

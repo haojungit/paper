@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!--设置Struts 2应用是否使用开发模式 -->
+	<constant name="struts.devMode" value="false"></constant>
+	<!--每次Http请求到达时,是否重新加载资源文件 -->
+	<constant name="struts.i18n.reload" value="true"></constant>
+	<!--struts.xml文件系统改变后,系统是否重新加载该文件 -->
+	<constant name="struts.configuration.xml.reload" value="true"></constant>
+	<!--指定web应用的默认编码集 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<!--指定所需的国际化资源 -->
+	<constant name="struts.custom.i18n.resources" value="messageResource"></constant>
+	<!-- 指定上传文件时的文件大小限制 -->
+	<constant name="struts.multipart.maxSize" value="10485760" />
+
+	<package name="struts" extends="struts-default,json-default">
+
+
+		<global-results>
+			<result name="error" type="redirect">/error.jsp</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+
+		<action name="login" class="paperUserAction" method="login">
+			<result name="SUCCESS" type="redirect">/index.jsp</result>
+			<result name="LOGIN" type="redirect">/login.jsp</result>
+		</action>
+
+		<action name="logout" class="paperUserAction" method="logout">
+			<result name="login" type="redirect">/login.jsp</result>
+		</action>
+
+		<action name="getUserRole" class="paperUserAction" method="getUserRole">
+			<result name="SUCCESS" type="json">
+				<param name="root">userRoleList</param>
+			</result>
+		</action>
+
+		<action name="getRolePermission" class="paperUserAction"
+			method="getRolePermission">
+			<result name="SUCCESS" type="json">
+				<param name="root">rolePermissionList</param>
+
+			</result>
+		</action>
+
+		<action name="addUserRoles" class="paperUserAction" method="addUserRoles">
+			<result name="SUCCESS" type="json">
+				<param name="root">SUCCESS</param>
+			</result>
+		</action>
+
+		<action name="removeUserRoles" class="paperUserAction" method="removeUserRoles">
+			<result name="SUCCESS" type="json">
+				<param name="root">SUCCESS</param>
+			</result>
+		</action>
+
+		<action name="addRolePermissions" class="paperUserAction"
+			method="addRolePermissions">
+			<result name="SUCCESS" type="json">
+				<param name="root">SUCCESS</param>
+			</result>
+		</action>
+
+		<action name="removeRolePermissions" class="paperUserAction"
+			method="removeRolePermissions">
+			<result name="SUCCESS" type="json">
+				<param name="root">SUCCESS</param>
+			</result>
+		</action>
+
+		<action name="addRolePermission" class="paperUserAction"
+			method="addRolePermission">
+			<result name="SUCCESS" type="json">
+				<param name="root">SUCCESS</param>
+			</result>
+		</action>
+
+		<action name="removeRolePermission" class="paperUserAction"
+			method="removeRolePermission">
+			<result name="SUCCESS" type="json">
+				<param name="root">SUCCESS</param>
+			</result>
+		</action>
+
+		<action name="removeUserRoles" class="paperUserAction" method="removeUserRoles">
+			<result name="SUCCESS" type="json">
+				<param name="root">SUCCESS</param>
+
+			</result>
+		</action>
+
+		<action name="addUserRole" class="paperUserAction" method="addUserRole">
+			<result name="SUCCESS" type="json">
+				<param name="root">SUCCESS</param>
+			</result>
+		</action>
+
+		<action name="removeUserRole" class="paperUserAction" method="removeUserRole">
+			<result name="SUCCESS" type="json">
+				<param name="root">SUCCESS</param>
+
+			</result>
+		</action>
+
+		<action name="getAllRole" class="paperRoleAction" method="getAllRole">
+			<result name="SUCCESS" type="json">
+				<param name="root">roleList</param>
+			</result>
+		</action>
+
+		<action name="getAllPermission" class="paperRoleAction" method="getAllPermission">
+			<result name="SUCCESS" type="json">
+				<param name="root">permissionList</param>
+			</result>
+		</action>
+
+		<action name="addRole" class="paperRoleAction" method="addRole">
+			<result name="SUCCESS" type="json">
+				<param name="root">flag</param>
+				<param name="contentType">text/html</param>
+			</result>
+		</action>
+
+		<action name="updateRole" class="paperRoleAction" method="updateRole">
+			<result name="SUCCESS" type="json">
+				<param name="root">flag</param>
+			</result>
+		</action>
+
+		<action name="deleteRole" class="paperRoleAction" method="deleteRole">
+			<result name="SUCCESS" type="json">
+				<param name="root">flag</param>
+			</result>
+		</action>
+
+		<!-- 上传文件的action -->
+		<action name="uploadPaper" class="net.dqsy.publics.upload.UploadAction"
+			method="uploadPaper">
+			<result name="success">../uploadSuccess.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<action name="uploadPaperTemplate" class="net.dqsy.publics.upload.UploadAction"
+			method="uploadPaperTemplate">
+			<result name="success">../uploadSuccess.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<action name="uploadExcel" class="net.dqsy.publics.upload.UploadAction"
+			method="uploadExcel">
+			<result name="SUCCESS" type="json">
+				<param name="root">message</param>
+				<param name="contentType">text/html</param>
+			</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<action name="importStudent" class="net.dqsy.publics.upload.UploadAction"
+			method="importStudent">
+			<result name="SUCCESS" type="json">
+				<param name="root">message</param>
+				<param name="contentType">text/html</param>
+			</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<action name="importTeacher" class="net.dqsy.publics.upload.UploadAction"
+			method="importTeacher">
+			<result name="SUCCESS" type="json">
+				<param name="root">message</param>
+				<param name="contentType">text/html</param>
+			</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<action name="getNameList" class="net.dqsy.publics.upload.DownloadAction"
+			method="getNameList">
+			<result name="SUCCESS" type="json">
+				<param name="root">fnList</param>
+			</result>
+		</action>
+
+		<action name="download" class="net.dqsy.publics.upload.DownloadAction">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="contentDisposition">attachment;filename="${fname}"</param>
+				<param name="inputName">downloadFile</param>
+			</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<action name="getPaper" class="net.dqsy.publics.upload.DownloadAction">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="contentDisposition">attachment;filename="${fname}"</param>
+				<param name="inputName">paper</param>
+			</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<action name="getPaperTemplate" class="net.dqsy.publics.upload.DownloadAction">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="contentDisposition">attachment;filename="${fname}"</param>
+				<param name="inputName">paperTemplate</param>
+			</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+	</package>
+</struts>
