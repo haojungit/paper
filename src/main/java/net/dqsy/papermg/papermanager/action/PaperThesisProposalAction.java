@@ -2,34 +2,30 @@ package net.dqsy.papermg.papermanager.action;
 
 import net.dqsy.papermg.papermanager.po.PaperThesisProposal;
 import net.dqsy.papermg.papermanager.service.PaperThesisProposalService;
-import net.dqsy.papermg.papermanager.po.PaperThesisProposal;
-import net.dqsy.papermg.papermanager.service.PaperThesisProposalService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
-public class PaperThesisProposalAction
-{
-  private PaperThesisProposalService paperThesisProposalService;
+@Controller
+@Scope("prototype")
+public class PaperThesisProposalAction {
 
-  public boolean saveWithTitleId(int titleId, PaperThesisProposal paperThesisProposal)
-  {
-    return this.paperThesisProposalService.saveWithTitleId(titleId, 
-      paperThesisProposal);
-  }
+    @Autowired
+    private PaperThesisProposalService paperThesisProposalService;
 
-  public boolean updateWithTitleId(int titleId, PaperThesisProposal paperThesisProposal)
-  {
-    return this.paperThesisProposalService.updateWithTitleId(titleId, 
-      paperThesisProposal);
-  }
+    public boolean saveWithTitleId(int titleId, PaperThesisProposal paperThesisProposal) {
+        return this.paperThesisProposalService.saveWithTitleId(titleId,
+                paperThesisProposal);
+    }
 
-  public List findByTitleId(int titleId)
-  {
-    return this.paperThesisProposalService.findByTitleId(titleId);
-  }
+    public boolean updateWithTitleId(int titleId, PaperThesisProposal paperThesisProposal) {
+        return this.paperThesisProposalService.updateWithTitleId(titleId,
+                paperThesisProposal);
+    }
 
-  public void setPaperThesisProposalService(PaperThesisProposalService paperThesisProposalService)
-  {
-    this.paperThesisProposalService = paperThesisProposalService;
-  }
+    public List findByTitleId(int titleId) {
+        return this.paperThesisProposalService.findByTitleId(titleId);
+    }
 }

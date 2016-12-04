@@ -1,111 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="net.dqsy.papermg.sysmanager.vo.LoginVO" table="login_view"
+    <class name="net.dqsy.papermg.sysmanager.vo.LoginVO" table="login_view"
            catalog="paper">
 
-		<composite-id>
-			<key-property name="id" column="id" type="java.lang.Integer" />
-			<key-property name="roleid" column="roleid" type="java.lang.Integer" />
-		</composite-id>
-		<!-- 
-		<property name="roleid" type="java.lang.Integer">
-			<column name="roleid" />
-		</property>
-		<id name="id" type="java.lang.Integer">
-			<column name="id" />
-		</id> -->
-		<property name="userId" type="java.lang.Integer">
-			<column name="userId" />
-		</property>
-		<property name="Username" type="java.lang.String">
-			<column name="Username" />
-		</property>
-		<property name="password" type="java.lang.String">
-			<column name="password" />
-		</property>
-		<property name="identity" type="java.lang.String">
-			<column name="identity" />
-		</property>
-		<property name="flag" type="java.lang.Integer">
-			<column name="flag" />
-		</property>
-		<property name="studentid" type="java.lang.Integer">
-			<column name="studentid" />
-		</property>
-		<property name="studentname" type="java.lang.String">
-			<column name="studentname" />
-		</property>
-		<property name="studentsex" type="java.lang.String">
-			<column name="studentsex" />
-		</property>
-		<property name="studentAge" type="java.lang.Integer">
-			<column name="studentAge" />
-		</property>
-		<property name="studentPhone" type="java.lang.String">
-			<column name="studentPhone" />
-		</property>
-		<property name="studentFaculty" type="java.lang.String">
-			<column name="studentFaculty" />
-		</property>
-		<property name="studentMajor" type="java.lang.String">
-			<column name="studentMajor" />
-		</property>
-		<property name="studentDirection" type="java.lang.String">
-			<column name="studentDirection" />
-		</property>
-		<property name="studentGrade" type="java.lang.String">
-			<column name="studentGrade" />
-		</property>
-		<property name="studentNumber" type="java.lang.String">
-			<column name="studentNumber" />
-		</property>
-		<property name="teacherid" type="java.lang.Integer">
-			<column name="teacherid" />
-		</property>
-		<property name="teacherName" type="java.lang.String">
-			<column name="teacherName" />
-		</property>
-		<property name="teacherSex" type="java.lang.String">
-			<column name="teacherSex" />
-		</property>
-		<property name="teacherAge" type="java.lang.Integer">
-			<column name="teacherAge" />
-		</property>
-		<property name="teacherPhone" type="java.lang.String">
-			<column name="teacherPhone" />
-		</property>
-		<property name="teacherUnits" type="java.lang.String">
-			<column name="teacherUnits" />
-		</property>
-		<property name="teacherDirection" type="java.lang.String">
-			<column name="teacherDirection" />
-		</property>
-		<property name="teacherEducation" type="java.lang.String">
-			<column name="teacherEducation" />
-		</property>
-		<property name="teacherJobTitle" type="java.lang.String">
-			<column name="teacherJobTitle" />
-		</property>
-		<property name="teacherNumber" type="java.lang.String">
-			<column name="teacherNumber" />
-		</property>
-		<property name="teacherMajor" type="java.lang.String">
-			<column name="teacherMajor" />
-		</property>
-		<property name="RoleName" type="java.lang.String">
-			<column name="RoleName" />
-		</property>
-		<property name="description" type="java.lang.String">
-			<column name="description" />
-		</property>
-		<property name="permission" type="java.lang.String">
-			<column name="permission" />
-		</property>
-		<property name="pdescription" type="java.lang.String">
-			<column name="pdescription" />
-		</property>
-	</class>
+        <composite-id>
+            <key-property name="id" column="id" type="java.lang.Integer"/>
+            <key-property name="roleid" column="roleid" type="java.lang.Integer"/>
+        </composite-id>
+        <!--
+        <property name="roleid" type="java.lang.Integer">
+            <column name="roleid" />
+        </property>
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+        </id> -->
+        <property name="userId" type="java.lang.Integer">
+            <column name="userId"/>
+        </property>
+        <property name="Username" type="java.lang.String">
+            <column name="Username"/>
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="password"/>
+        </property>
+        <property name="identity" type="java.lang.String">
+            <column name="identity"/>
+        </property>
+        <property name="flag" type="java.lang.Integer">
+            <column name="flag"/>
+        </property>
+        <property name="studentid" type="java.lang.Integer">
+            <column name="studentid"/>
+        </property>
+        <property name="studentname" type="java.lang.String">
+            <column name="studentname"/>
+        </property>
+        <property name="studentsex" type="java.lang.String">
+            <column name="studentsex"/>
+        </property>
+        <property name="studentAge" type="java.lang.Integer">
+            <column name="studentAge"/>
+        </property>
+        <property name="studentPhone" type="java.lang.String">
+            <column name="studentPhone"/>
+        </property>
+        <property name="studentFaculty" type="java.lang.String">
+            <column name="studentFaculty"/>
+        </property>
+        <property name="studentMajor" type="java.lang.String">
+            <column name="studentMajor"/>
+        </property>
+        <property name="studentDirection" type="java.lang.String">
+            <column name="studentDirection"/>
+        </property>
+        <property name="studentGrade" type="java.lang.String">
+            <column name="studentGrade"/>
+        </property>
+        <property name="studentNumber" type="java.lang.String">
+            <column name="studentNumber"/>
+        </property>
+        <property name="teacherid" type="java.lang.Integer">
+            <column name="teacherid"/>
+        </property>
+        <property name="teacherName" type="java.lang.String">
+            <column name="teacherName"/>
+        </property>
+        <property name="teacherSex" type="java.lang.String">
+            <column name="teacherSex"/>
+        </property>
+        <property name="teacherAge" type="java.lang.Integer">
+            <column name="teacherAge"/>
+        </property>
+        <property name="teacherPhone" type="java.lang.String">
+            <column name="teacherPhone"/>
+        </property>
+        <property name="teacherUnits" type="java.lang.String">
+            <column name="teacherUnits"/>
+        </property>
+        <property name="teacherDirection" type="java.lang.String">
+            <column name="teacherDirection"/>
+        </property>
+        <property name="teacherEducation" type="java.lang.String">
+            <column name="teacherEducation"/>
+        </property>
+        <property name="teacherJobTitle" type="java.lang.String">
+            <column name="teacherJobTitle"/>
+        </property>
+        <property name="teacherNumber" type="java.lang.String">
+            <column name="teacherNumber"/>
+        </property>
+        <property name="teacherMajor" type="java.lang.String">
+            <column name="teacherMajor"/>
+        </property>
+        <property name="RoleName" type="java.lang.String">
+            <column name="RoleName"/>
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="description"/>
+        </property>
+        <property name="permission" type="java.lang.String">
+            <column name="permission"/>
+        </property>
+        <property name="pdescription" type="java.lang.String">
+            <column name="pdescription"/>
+        </property>
+    </class>
 </hibernate-mapping>

@@ -5,145 +5,120 @@ import net.dqsy.papermg.papermanager.service.PaperTitleService;
 import net.dqsy.papermg.sysmanager.po.PaperStudent;
 import net.dqsy.papermg.sysmanager.po.PaperTeacher;
 import net.dqsy.papermg.util.PagingSupport;
-import net.dqsy.papermg.papermanager.po.PaperTitle;
-import net.dqsy.papermg.papermanager.service.PaperTitleService;
-import net.dqsy.papermg.sysmanager.po.PaperStudent;
-import net.dqsy.papermg.sysmanager.po.PaperTeacher;
-import net.dqsy.papermg.util.PagingSupport;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
-import java.util.List;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
-public class PaperTitleAction
-{
-  private PaperTitleService paperTitleService;
+@Controller
+@Scope("prototype")
+public class PaperTitleAction {
 
-  public void setPaperTitleService(PaperTitleService paperTitleService)
-  {
-    this.paperTitleService = paperTitleService;
-  }
+    @Autowired
+    private PaperTitleService paperTitleService;
 
-  public String save(PaperTitle paperTitle, HttpSession session)
-  {
-    PaperTeacher paperTeacher = (PaperTeacher)session
-      .getAttribute("teacher");
+    public String save(PaperTitle paperTitle, HttpSession session) {
+        PaperTeacher paperTeacher = (PaperTeacher) session
+                .getAttribute("teacher");
 
-    if (paperTeacher != null) {
-      paperTitle.setPaperTeacher(paperTeacher);
-      return this.paperTitleService.save(paperTitle);
+        if (paperTeacher != null) {
+            paperTitle.setPaperTeacher(paperTeacher);
+            return this.paperTitleService.save(paperTitle);
+        }
+        return "登陆超时,请重新登录!";
     }
-    return "登陆超时,请重新登录!";
-  }
 
-  public String saveStudentDTP(int studentId, int teacherId, PaperTitle paperTitle)
-  {
-    return this.paperTitleService.saveStudentDTP(studentId, teacherId, 
-      paperTitle);
-  }
-
-  public String chooseTitle(int paperTitleId, HttpSession session)
-  {
-    PaperStudent paperStudent = (PaperStudent)session
-      .getAttribute("student");
-
-    if (paperStudent != null) {
-      return this.paperTitleService.chooseTitle(paperTitleId, paperStudent);
+    public String saveStudentDTP(int studentId, int teacherId, PaperTitle paperTitle) {
+        return this.paperTitleService.saveStudentDTP(studentId, teacherId,
+                paperTitle);
     }
-    return "登陆超时,请重新登录！";
-  }
 
-  public boolean update(PaperTitle paperTitle)
-  {
-    return this.paperTitleService.update(paperTitle);
-  }
+    public String chooseTitle(int paperTitleId, HttpSession session) {
+        PaperStudent paperStudent = (PaperStudent) session
+                .getAttribute("student");
 
-  public boolean approvePaperTitle(PaperTitle paperTitle, int state)
-  {
-    return this.paperTitleService.approvePaperTitle(paperTitle, state);
-  }
+        if (paperStudent != null) {
+            return this.paperTitleService.chooseTitle(paperTitleId, paperStudent);
+        }
+        return "登陆超时,请重新登录！";
+    }
 
-  public boolean updateState(int paperTitleId, int state)
-  {
-    return this.paperTitleService.updateState(paperTitleId, state);
-  }
+    public boolean update(PaperTitle paperTitle) {
+        return this.paperTitleService.update(paperTitle);
+    }
 
-  public boolean updateStateByBatch(List<Integer> paperTitleIds, int state)
-  {
-    return this.paperTitleService.updateStateByBatch(paperTitleIds, state);
-  }
+    public boolean approvePaperTitle(PaperTitle paperTitle, int state) {
+        return this.paperTitleService.approvePaperTitle(paperTitle, state);
+    }
 
-  public PaperTitle findById(int id)
-  {
-    return (PaperTitle)this.paperTitleService.findById(id);
-  }
+    public boolean updateState(int paperTitleId, int state) {
+        return this.paperTitleService.updateState(paperTitleId, state);
+    }
 
-  public PagingSupport findByProperty(String property, String value, int numberOfPage, int countOfPage)
-  {
-    return this.paperTitleService.findByProperty(property, value, numberOfPage, 
-      countOfPage);
-  }
+    public boolean updateStateByBatch(List<Integer> paperTitleIds, int state) {
+        return this.paperTitleService.updateStateByBatch(paperTitleIds, state);
+    }
 
-  public List findTeacherName()
-  {
-    return this.paperTitleService.findTeacherName();
-  }
+    public PaperTitle findById(int id) {
+        return (PaperTitle) this.paperTitleService.findById(id);
+    }
 
-  public PagingSupport findByTeacherId(int paperTeacherId, int numberOfPage, int countOfPage)
-  {
-    return this.paperTitleService.findByTeacherId(paperTeacherId, numberOfPage, 
-      countOfPage);
-  }
+    public PagingSupport findByProperty(String property, String value, int numberOfPage, int countOfPage) {
+        return this.paperTitleService.findByProperty(property, value, numberOfPage,
+                countOfPage);
+    }
 
-  public PagingSupport findAll(int numberOfPage, int countOfPage)
-  {
-    return this.paperTitleService.findAll(numberOfPage, countOfPage);
-  }
+    public List findTeacherName() {
+        return this.paperTitleService.findTeacherName();
+    }
 
-  public PagingSupport findByTitleState(int state, int numberOfPage, int countOfPage)
-  {
-    return this.paperTitleService.findByTitleState(state, numberOfPage, 
-      countOfPage);
-  }
+    public PagingSupport findByTeacherId(int paperTeacherId, int numberOfPage, int countOfPage) {
+        return this.paperTitleService.findByTeacherId(paperTeacherId, numberOfPage,
+                countOfPage);
+    }
 
-  public PagingSupport findByStudentMajor(String studentMajor, int numberOfPage, int countOfPage)
-  {
-    return this.paperTitleService.findByStudentMajor(studentMajor, numberOfPage, 
-      countOfPage);
-  }
+    public PagingSupport findAll(int numberOfPage, int countOfPage) {
+        return this.paperTitleService.findAll(numberOfPage, countOfPage);
+    }
 
-  public List findTitleByStudentId(int paperStudentId, int state)
-  {
-    return this.paperTitleService.findTitleByStudentId(paperStudentId, state);
-  }
+    public PagingSupport findByTitleState(int state, int numberOfPage, int countOfPage) {
+        return this.paperTitleService.findByTitleState(state, numberOfPage,
+                countOfPage);
+    }
 
-  public List findTitleByTeacherId(int paperTeacherId, int state)
-  {
-    return this.paperTitleService.findTitleByTeacherId(paperTeacherId, state);
-  }
+    public PagingSupport findByStudentMajor(String studentMajor, int numberOfPage, int countOfPage) {
+        return this.paperTitleService.findByStudentMajor(studentMajor, numberOfPage,
+                countOfPage);
+    }
 
-  public List findStudentInfoByTitleId(int titleId)
-  {
-    return this.paperTitleService.findStudentInfoByTitleId(titleId);
-  }
+    public List findTitleByStudentId(int paperStudentId, int state) {
+        return this.paperTitleService.findTitleByStudentId(paperStudentId, state);
+    }
 
-  public List<String> findFaculty()
-  {
-    return this.paperTitleService.findFaculty();
-  }
+    public List findTitleByTeacherId(int paperTeacherId, int state) {
+        return this.paperTitleService.findTitleByTeacherId(paperTeacherId, state);
+    }
 
-  public List findMajorByFaculty(String faculty)
-  {
-    return this.paperTitleService.findMajorByFaculty(faculty);
-  }
+    public List findStudentInfoByTitleId(int titleId) {
+        return this.paperTitleService.findStudentInfoByTitleId(titleId);
+    }
 
-  public List findGrade()
-  {
-    return this.paperTitleService.findGrade();
-  }
+    public List<String> findFaculty() {
+        return this.paperTitleService.findFaculty();
+    }
 
-  public PagingSupport findPageByFMG(String faculty, String major, String grage, int numberOfPage, int countOfPage)
-  {
-    return this.paperTitleService.findPageByFMG(faculty, major, grage, 
-      numberOfPage, countOfPage);
-  }
+    public List findMajorByFaculty(String faculty) {
+        return this.paperTitleService.findMajorByFaculty(faculty);
+    }
+
+    public List findGrade() {
+        return this.paperTitleService.findGrade();
+    }
+
+    public PagingSupport findPageByFMG(String faculty, String major, String grage, int numberOfPage, int countOfPage) {
+        return this.paperTitleService.findPageByFMG(faculty, major, grage,
+                numberOfPage, countOfPage);
+    }
 }

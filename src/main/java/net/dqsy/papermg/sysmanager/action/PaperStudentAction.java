@@ -3,82 +3,76 @@ package net.dqsy.papermg.sysmanager.action;
 import net.dqsy.papermg.sysmanager.po.PaperStudent;
 import net.dqsy.papermg.sysmanager.service.PaperStudentService;
 import net.dqsy.papermg.util.PagingSupport;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
-public class PaperStudentAction
-{
-  PaperStudentService paperStudentService;
+@Controller
+@Scope("prototype")
+public class PaperStudentAction {
 
-  public boolean save(PaperStudent paperStudent)
-  {
-    return this.paperStudentService.save(paperStudent);
-  }
+    @Autowired
+    PaperStudentService paperStudentService;
 
-  public boolean update(PaperStudent paperStudent, HttpSession session)
-  {
-    PaperStudent paperStudentS = (PaperStudent)session
-      .getAttribute("student");
-
-    if (paperStudentS != null)
-    {
-      if (paperStudentS.getStudentId().equals(
-        paperStudent.getStudentId())) {
-        session.setAttribute("student", paperStudent);
-      }
+    public boolean save(PaperStudent paperStudent) {
+        return this.paperStudentService.save(paperStudent);
     }
-    return this.paperStudentService.update(paperStudent);
-  }
 
-  public String importStudent(String path) {
-    return this.paperStudentService.importStudent(path);
-  }
+    public boolean update(PaperStudent paperStudent, HttpSession session) {
+        PaperStudent paperStudentS = (PaperStudent) session
+                .getAttribute("student");
 
-  public boolean updateStudentFlag(PaperStudent paperStudent, int flag) {
-    return this.paperStudentService.updateStudentFlag(paperStudent, flag);
-  }
+        if (paperStudentS != null) {
+            if (paperStudentS.getStudentId().equals(
+                    paperStudent.getStudentId())) {
+                session.setAttribute("student", paperStudent);
+            }
+        }
+        return this.paperStudentService.update(paperStudent);
+    }
 
-  public boolean resetStudentPassword(int studentId) {
-    return this.paperStudentService.resetStudentPassword(studentId);
-  }
+    public String importStudent(String path) {
+        return this.paperStudentService.importStudent(path);
+    }
 
-  public PagingSupport find(String hql, int numberOfPage, int countOfPage)
-  {
-    return this.paperStudentService.find(hql, numberOfPage, countOfPage);
-  }
+    public boolean updateStudentFlag(PaperStudent paperStudent, int flag) {
+        return this.paperStudentService.updateStudentFlag(paperStudent, flag);
+    }
 
-  public PaperStudent findById(int id)
-  {
-    return (PaperStudent)this.paperStudentService.findById(id);
-  }
+    public boolean resetStudentPassword(int studentId) {
+        return this.paperStudentService.resetStudentPassword(studentId);
+    }
 
-  public List findStudentMajor(String teacherUnits)
-  {
-    return this.paperStudentService.findStudentMajor(teacherUnits);
-  }
+    public PagingSupport find(String hql, int numberOfPage, int countOfPage) {
+        return this.paperStudentService.find(hql, numberOfPage, countOfPage);
+    }
 
-  public PaperStudent findByNumber(String number)
-  {
-    return this.paperStudentService.findByNumber(number);
-  }
+    public PaperStudent findById(int id) {
+        return (PaperStudent) this.paperStudentService.findById(id);
+    }
 
-  public PagingSupport findByProperty(String property, String value, int numberOfPage, int countOfPage)
-  {
-    return this.paperStudentService.findByProperty(property, value, 
-      numberOfPage, countOfPage);
-  }
+    public List findStudentMajor(String teacherUnits) {
+        return this.paperStudentService.findStudentMajor(teacherUnits);
+    }
 
-  public PagingSupport findAll(int numberOfPage, int countOfPage)
-  {
-    return this.paperStudentService.findAll(numberOfPage, countOfPage);
-  }
+    public PaperStudent findByNumber(String number) {
+        return this.paperStudentService.findByNumber(number);
+    }
 
-  public boolean del(PaperStudent paperStudent)
-  {
-    return this.paperStudentService.del(paperStudent);
-  }
+    public PagingSupport findByProperty(String property, String value, int numberOfPage, int countOfPage) {
+        return this.paperStudentService.findByProperty(property, value,
+                numberOfPage, countOfPage);
+    }
 
-  public void setPaperStudentService(PaperStudentService paperStudentService) {
-    this.paperStudentService = paperStudentService;
-  }
+    public PagingSupport findAll(int numberOfPage, int countOfPage) {
+        return this.paperStudentService.findAll(numberOfPage, countOfPage);
+    }
+
+    public boolean del(PaperStudent paperStudent) {
+        return this.paperStudentService.del(paperStudent);
+    }
+
 }

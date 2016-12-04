@@ -2,33 +2,30 @@ package net.dqsy.papermg.papermanager.action;
 
 import net.dqsy.papermg.papermanager.po.PaperGuidancerecord;
 import net.dqsy.papermg.papermanager.service.PaperGuidancerecordService;
-import net.dqsy.papermg.papermanager.service.PaperGuidancerecordService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
-public class PaperGuidancerecordAction
-{
-  private PaperGuidancerecordService paperGuidancerecordService;
+@Controller
+@Scope("prototype")
+public class PaperGuidancerecordAction {
 
-  public boolean saveWithTitleId(int titleId, PaperGuidancerecord paperGuidancerecord)
-  {
-    return this.paperGuidancerecordService.saveWithTitleId(titleId, 
-      paperGuidancerecord);
-  }
+    @Autowired
+    private PaperGuidancerecordService paperGuidancerecordService;
 
-  public boolean updateWithTitleId(int titleId, PaperGuidancerecord paperGuidancerecord)
-  {
-    return this.paperGuidancerecordService.updateWithTitleId(titleId, 
-      paperGuidancerecord);
-  }
+    public boolean saveWithTitleId(int titleId, PaperGuidancerecord paperGuidancerecord) {
+        return this.paperGuidancerecordService.saveWithTitleId(titleId,
+                paperGuidancerecord);
+    }
 
-  public void setPaperGuidancerecordService(PaperGuidancerecordService paperGuidancerecordService)
-  {
-    this.paperGuidancerecordService = paperGuidancerecordService;
-  }
+    public boolean updateWithTitleId(int titleId, PaperGuidancerecord paperGuidancerecord) {
+        return this.paperGuidancerecordService.updateWithTitleId(titleId,
+                paperGuidancerecord);
+    }
 
-  public List findWithTitleId(int titleId)
-  {
-    return this.paperGuidancerecordService.findWithTitleId(titleId);
-  }
+    public List findWithTitleId(int titleId) {
+        return this.paperGuidancerecordService.findWithTitleId(titleId);
+    }
 }

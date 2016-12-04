@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="net.dqsy.papermg.papermanager.po.PaperThesisProposal"
-		table="paper_thesisproposal" catalog="paper">
-		<id name="thesisProposalReportId" type="integer">
-			<column name="thesisProposalReportId" />
-			<generator class="native" />
-		</id>
-		<many-to-one name="paperTitle" column="TitleId" unique="true"
-			lazy="false" not-null="true" />
-		<property name="thesisProposalBackground" type="string">
-			<column name="thesisProposalBackground" length="1024" />
-		</property>
-		<property name="thesisProposalResearchContent" type="string">
-			<column name="thesisProposalResearchContent" length="1024" />
-		</property>
-		<property name="thesisProposalResearchMethod" type="string">
-			<column name="thesisProposalResearchMethod" length="1024" />
-		</property>
-		<property name="thesisProposalResearchSchedule" type="string">
-			<column name="thesisProposalResearchSchedule" length="1024" />
-		</property>
-		<property name="thesisProposalReference" type="string">
-			<column name="thesisProposalReference" length="1024" />
-		</property>
-		<property name="thesisProposalTeacherSug" type="string">
-			<column name="thesisProposalTeacherSug" length="512" />
-		</property>
-		<property name="teacherSugDate" type="java.util.Date">
-			<column name="teacherSugDate" length="24" />
-		</property> 
-		<property name="thesisProposalDeanSug" type="string">
-			<column name="thesisProposalDeanSug" length="512" />
-		</property>
-		<property name="deanSugDate" type="java.util.Date">
-			<column name="deanSugDate" length="24" />
-		</property>
-		<property name="thesisProposalRemark" type="string">
-			<column name="thesisProposalRemark" length="1024" />
-		</property>
-		<property name="thesisProposalFlag" type="integer">
-			<column name="thesisProposalFlag" />
-		</property>
-	</class>
+    <class name="net.dqsy.papermg.papermanager.po.PaperThesisProposal"
+           table="paper_thesisproposal" catalog="paper">
+        <id name="thesisProposalReportId" type="integer">
+            <column name="thesisProposalReportId"/>
+            <generator class="native"/>
+        </id>
+        <many-to-one name="paperTitle" column="TitleId" unique="true"
+                     lazy="false" not-null="true"/>
+        <property name="thesisProposalBackground" type="string">
+            <column name="thesisProposalBackground" length="1024"/>
+        </property>
+        <property name="thesisProposalResearchContent" type="string">
+            <column name="thesisProposalResearchContent" length="1024"/>
+        </property>
+        <property name="thesisProposalResearchMethod" type="string">
+            <column name="thesisProposalResearchMethod" length="1024"/>
+        </property>
+        <property name="thesisProposalResearchSchedule" type="string">
+            <column name="thesisProposalResearchSchedule" length="1024"/>
+        </property>
+        <property name="thesisProposalReference" type="string">
+            <column name="thesisProposalReference" length="1024"/>
+        </property>
+        <property name="thesisProposalTeacherSug" type="string">
+            <column name="thesisProposalTeacherSug" length="512"/>
+        </property>
+        <property name="teacherSugDate" type="java.util.Date">
+            <column name="teacherSugDate" length="24"/>
+        </property>
+        <property name="thesisProposalDeanSug" type="string">
+            <column name="thesisProposalDeanSug" length="512"/>
+        </property>
+        <property name="deanSugDate" type="java.util.Date">
+            <column name="deanSugDate" length="24"/>
+        </property>
+        <property name="thesisProposalRemark" type="string">
+            <column name="thesisProposalRemark" length="1024"/>
+        </property>
+        <property name="thesisProposalFlag" type="integer">
+            <column name="thesisProposalFlag"/>
+        </property>
+    </class>
 </hibernate-mapping>

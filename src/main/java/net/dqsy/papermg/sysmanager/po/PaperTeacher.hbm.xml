@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="net.dqsy.papermg.sysmanager.po.PaperTeacher"
-		table="paper_teacher" catalog="paper">
-		<id name="teacherId" type="java.lang.Integer">
-			<column name="teacherId" />
-			<generator class="increment" />
-		</id>
-		<many-to-one name="paperUser"
-			class="net.dqsy.papermg.sysmanager.po.PaperUser">
-			<column name="userId" not-null="true" unique="true" />
-		</many-to-one>
-		<property name="teacherName" type="java.lang.String">
-			<column name="teacherName" length="32" />
-		</property>
-		<property name="teacherSex" type="java.lang.String">
-			<column name="teacherSex" length="3" />
-		</property>
-		<property name="teacherAge" type="java.lang.Integer">
-			<column name="teacherAge" length="3" />
-		</property>
-		<property name="teacherUnits" type="java.lang.String">
-			<column name="teacherUnits" length="32" />
-		</property>
-		<property name="teacherMajor" type="java.lang.String">
-			<column name="teacherMajor" length="32" />
-		</property>
-		<property name="teacherDirection" type="java.lang.String">
-			<column name="teacherDirection" length="32" />
-		</property>
-		<property name="teacherEducation" type="java.lang.String">
-			<column name="teacherEducation" length="32" />
-		</property>
-		<property name="teacherJobTitle" type="java.lang.String">
-			<column name="teacherJobTitle" length="32" />
-		</property>
-		<property name="teacherPhone" type="java.lang.String">
-			<column name="teacherPhone" length="16" />
-		</property>
-		<property name="teacherNumber" type="java.lang.String">
-			<column name="teacherNumber" length="32" />
-		</property>
-		<property name="flag" type="integer">
-			<column name="flag" />
-		</property>
-	</class>
+    <class name="net.dqsy.papermg.sysmanager.po.PaperTeacher"
+           table="paper_teacher" catalog="paper">
+        <id name="teacherId" type="java.lang.Integer">
+            <column name="teacherId"/>
+            <generator class="increment"/>
+        </id>
+        <many-to-one name="paperUser"
+                     class="net.dqsy.papermg.sysmanager.po.PaperUser">
+            <column name="userId" not-null="true" unique="true"/>
+        </many-to-one>
+        <property name="teacherName" type="java.lang.String">
+            <column name="teacherName" length="32"/>
+        </property>
+        <property name="teacherSex" type="java.lang.String">
+            <column name="teacherSex" length="3"/>
+        </property>
+        <property name="teacherAge" type="java.lang.Integer">
+            <column name="teacherAge" length="3"/>
+        </property>
+        <property name="teacherUnits" type="java.lang.String">
+            <column name="teacherUnits" length="32"/>
+        </property>
+        <property name="teacherMajor" type="java.lang.String">
+            <column name="teacherMajor" length="32"/>
+        </property>
+        <property name="teacherDirection" type="java.lang.String">
+            <column name="teacherDirection" length="32"/>
+        </property>
+        <property name="teacherEducation" type="java.lang.String">
+            <column name="teacherEducation" length="32"/>
+        </property>
+        <property name="teacherJobTitle" type="java.lang.String">
+            <column name="teacherJobTitle" length="32"/>
+        </property>
+        <property name="teacherPhone" type="java.lang.String">
+            <column name="teacherPhone" length="16"/>
+        </property>
+        <property name="teacherNumber" type="java.lang.String">
+            <column name="teacherNumber" length="32"/>
+        </property>
+        <property name="flag" type="integer">
+            <column name="flag"/>
+        </property>
+    </class>
 </hibernate-mapping>

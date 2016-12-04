@@ -3,72 +3,67 @@ package net.dqsy.papermg.sysmanager.action;
 import net.dqsy.papermg.sysmanager.po.PaperTeacher;
 import net.dqsy.papermg.sysmanager.service.PaperTeacherService;
 import net.dqsy.papermg.util.PagingSupport;
-import net.dqsy.papermg.sysmanager.po.PaperTeacher;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
-import java.util.List;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
-public class PaperTeacherAction
-{
-  PaperTeacherService paperTeacherService;
+@Controller
+@Scope("prototype")
+public class PaperTeacherAction {
 
-  public boolean save(PaperTeacher paperTeacher)
-  {
-    return this.paperTeacherService.save(paperTeacher);
-  }
+    @Autowired
+    PaperTeacherService paperTeacherService;
 
-  public boolean update(PaperTeacher paperTeacher, HttpSession session)
-  {
-    PaperTeacher paperTeacherS = (PaperTeacher)session
-      .getAttribute("teacher");
-
-    if (paperTeacherS != null)
-    {
-      if (paperTeacherS.getTeacherId().equals(
-        paperTeacher.getTeacherId())) {
-        session.setAttribute("teacher", paperTeacher);
-      }
+    public boolean save(PaperTeacher paperTeacher) {
+        return this.paperTeacherService.save(paperTeacher);
     }
-    return this.paperTeacherService.update(paperTeacher);
-  }
 
-  public PagingSupport find(String hql, int numberOfPage, int countOfPage)
-  {
-    return this.paperTeacherService.find(hql, numberOfPage, countOfPage);
-  }
+    public boolean update(PaperTeacher paperTeacher, HttpSession session) {
+        PaperTeacher paperTeacherS = (PaperTeacher) session
+                .getAttribute("teacher");
 
-  public PaperTeacher findById(int id)
-  {
-    return (PaperTeacher)this.paperTeacherService.findById(id);
-  }
+        if (paperTeacherS != null) {
+            if (paperTeacherS.getTeacherId().equals(
+                    paperTeacher.getTeacherId())) {
+                session.setAttribute("teacher", paperTeacher);
+            }
+        }
+        return this.paperTeacherService.update(paperTeacher);
+    }
 
-  public PaperTeacher findByNumber(String number)
-  {
-    return this.paperTeacherService.findByNumber(number);
-  }
+    public PagingSupport find(String hql, int numberOfPage, int countOfPage) {
+        return this.paperTeacherService.find(hql, numberOfPage, countOfPage);
+    }
 
-  public PagingSupport findByProperty(String property, String value, int numberOfPage, int countOfPage)
-  {
-    return this.paperTeacherService.findByProperty(property, value, 
-      numberOfPage, countOfPage);
-  }
+    public PaperTeacher findById(int id) {
+        return (PaperTeacher) this.paperTeacherService.findById(id);
+    }
 
-  public PagingSupport findAll(int numberOfPage, int countOfPage)
-  {
-    return this.paperTeacherService.findAll(numberOfPage, countOfPage);
-  }
+    public PaperTeacher findByNumber(String number) {
+        return this.paperTeacherService.findByNumber(number);
+    }
 
-  public List findTeacherName(String teacherUnits)
-  {
-    return this.paperTeacherService.findTeacherName(teacherUnits);
-  }
+    public PagingSupport findByProperty(String property, String value, int numberOfPage, int countOfPage) {
+        return this.paperTeacherService.findByProperty(property, value,
+                numberOfPage, countOfPage);
+    }
 
-  public boolean updateTeacherFlag(PaperTeacher paperTeacher, int flag)
-  {
-    return this.paperTeacherService.updateTeacherFlag(paperTeacher, flag);
-  }
+    public PagingSupport findAll(int numberOfPage, int countOfPage) {
+        return this.paperTeacherService.findAll(numberOfPage, countOfPage);
+    }
 
-  public void setPaperTeacherService(PaperTeacherService paperTeacherService) {
-    this.paperTeacherService = paperTeacherService;
-  }
+    public List findTeacherName(String teacherUnits) {
+        return this.paperTeacherService.findTeacherName(teacherUnits);
+    }
+
+    public boolean updateTeacherFlag(PaperTeacher paperTeacher, int flag) {
+        return this.paperTeacherService.updateTeacherFlag(paperTeacher, flag);
+    }
+
+    public void setPaperTeacherService(PaperTeacherService paperTeacherService) {
+        this.paperTeacherService = paperTeacherService;
+    }
 }

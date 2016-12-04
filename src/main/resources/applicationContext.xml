@@ -11,174 +11,8 @@
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
 
-    <!-- 学生业务流程 -->
-
-    <bean id="paperStudentAction"
-          class="net.dqsy.papermg.sysmanager.action.PaperStudentAction"
-          scope="prototype">
-        <property name="paperStudentService">
-            <ref bean="paperStudentService"/>
-        </property>
-    </bean>
-
-    <bean id="paperStudentService"
-          class="net.dqsy.papermg.sysmanager.service.impl.PaperStudentServiceImpl"
-          scope="prototype">
-        <property name="paperStudentDAO">
-            <ref bean="paperStudentDAO"/>
-        </property>
-        <property name="paperUserService">
-            <ref bean="paperUserService"/>
-        </property>
-        <property name="paperRoleService">
-            <ref bean="paperRoleService"/>
-        </property>
-        <property name="paperUserRoleService">
-            <ref bean="paperUserRoleService"/>
-        </property>
-    </bean>
-
-    <bean id="paperStudentDAO"
-          class="net.dqsy.papermg.sysmanager.dao.impl.PaperStudentDAOImpl">
-        <property name="hibernateTemplate">
-            <ref bean="hibernateTemplate"/>
-        </property>
-    </bean>
-
-    <!-- 教师业务流程 -->
-
-    <bean id="paperTeacherAction"
-          class="net.dqsy.papermg.sysmanager.action.PaperTeacherAction"
-          scope="prototype">
-        <property name="paperTeacherService">
-            <ref bean="paperTeacherService"/>
-        </property>
-    </bean>
-
-    <bean id="paperTeacherService"
-          class="net.dqsy.papermg.sysmanager.service.impl.PaperTeacherServiceImpl"
-          scope="prototype">
-        <property name="paperUserService">
-            <ref bean="paperUserService"/>
-        </property>
-        <property name="paperTeacherDAO">
-            <ref bean="paperTeacherDAO"/>
-        </property>
-        <property name="paperRoleService">
-            <ref bean="paperRoleService"/>
-        </property>
-        <property name="paperUserRoleService">
-            <ref bean="paperUserRoleService"/>
-        </property>
-    </bean>
-
-    <bean id="paperTeacherDAO"
-          class="net.dqsy.papermg.sysmanager.dao.impl.PaperTeacherDAOImpl">
-        <property name="hibernateTemplate">
-            <ref bean="hibernateTemplate"/>
-        </property>
-    </bean>
-
-    <!-- 用户业务流程 -->
-
-    <bean id="paperUserAction" class="net.dqsy.papermg.sysmanager.action.PaperUserAction">
-        <property name="paperUserService" ref="paperUserService"/>
-        <property name="paperRoleService" ref="paperRoleService"/>
-        <property name="paperPermissionService" ref="paperPermissionService"/>
-        <property name="paperUserRoleService" ref="paperUserRoleService"/>
-        <property name="paperRolePermissionService" ref="paperRolePermissionService"/>
-    </bean>
-
-    <bean id="paperUserService"
-          class="net.dqsy.papermg.sysmanager.service.impl.PaperUserServiceImpl">
-        <property name="paperUserDAO" ref="paperUserDAO"/>
-    </bean>
-
-    <bean id="paperUserDAO"
-          class="net.dqsy.papermg.sysmanager.dao.impl.PaperUserDAOImpl">
-        <property name="hibernateTemplate">
-            <ref bean="hibernateTemplate"/>
-        </property>
-    </bean>
-
-    <!-- 角色业务流程 -->
-
-    <bean id="paperRoleAction" class="net.dqsy.papermg.sysmanager.action.PaperRoleAction">
-        <property name="paperRoleService" ref="paperRoleService"/>
-    </bean>
-
-    <bean id="paperRoleService"
-          class="net.dqsy.papermg.sysmanager.service.impl.PaperRoleServiceImpl">
-        <property name="paperRoleDAO" ref="paperRoleDAO"/>
-    </bean>
-
-    <bean id="paperRoleDAO"
-          class="net.dqsy.papermg.sysmanager.dao.impl.PaperRoleDAOImpl">
-        <property name="hibernateTemplate">
-            <ref bean="hibernateTemplate"/>
-        </property>
-    </bean>
-
-    <!-- 权限业务流程 -->
-
-    <bean id="paperPermissionAction"
-          class="net.dqsy.papermg.sysmanager.action.PaperPermissionAction">
-        <property name="paperPermissionService" ref="paperPermissionService"/>
-    </bean>
-
-    <bean id="paperPermissionService"
-          class="net.dqsy.papermg.sysmanager.service.impl.PaperPermissionServiceImpl">
-        <property name="paperPermissionDAO" ref="paperPermissionDAO"/>
-    </bean>
-
-    <bean id="paperPermissionDAO"
-          class="net.dqsy.papermg.sysmanager.dao.impl.PaperPermissionDAOImpl">
-        <property name="hibernateTemplate">
-            <ref bean="hibernateTemplate"/>
-        </property>
-    </bean>
-
-    <!-- 上传业务流程 -->
-
-    <bean id="uploadAction" class="net.dqsy.publics.upload.UploadAction">
-        <property name="paperStudentService" ref="paperStudentService"/>
-        <property name="paperTeacherService" ref="paperTeacherService"/>
-        <property name="paperGuidancerecordService" ref="paperGuidancerecordService"/>
-    </bean>
-
-    <bean id="downloadAction" class="net.dqsy.publics.upload.DownloadAction">
-        <property name="paperGuidancerecordService" ref="paperGuidancerecordService"/>
-    </bean>
-
-    <!-- 用户&角色业务流程 -->
-
-    <bean id="paperUserRoleService"
-          class="net.dqsy.papermg.sysmanager.service.impl.PaperUserRoleServiceImpl">
-        <property name="paperUserRoleDAO" ref="paperUserRoleDAO"/>
-    </bean>
-
-    <bean id="paperUserRoleDAO"
-          class="net.dqsy.papermg.sysmanager.dao.impl.PaperUserRoleDAOImpl">
-        <property name="hibernateTemplate">
-            <ref bean="hibernateTemplate"/>
-        </property>
-    </bean>
-
-    <!-- 角色&权限业务流程 -->
-
-    <bean id="paperRolePermissionService"
-          class="net.dqsy.papermg.sysmanager.service.impl.PaperRolePermissionServiceImpl">
-        <property name="paperRolePermissionDAO" ref="paperRolePermissionDAO"/>
-    </bean>
-
-    <bean id="paperRolePermissionDAO"
-          class="net.dqsy.papermg.sysmanager.dao.impl.PaperRolePermissionDAOImpl">
-        <property name="hibernateTemplate">
-            <ref bean="hibernateTemplate"/>
-        </property>
-    </bean>
-
-
+    <!--配置包扫描-->
+    <context:component-scan base-package="net.dqsy"/>
     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
         <property name="sessionFactory">
             <ref bean="sessionFactory"/>
@@ -189,13 +23,7 @@
           class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
         <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
         <property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration"/>
-
     </bean>
-
-    <!-- 事务 -->
-
-    <context:annotation-config/>
-    <context:component-scan base-package="com.pactera"/>
 
     <!-- 定义事务管理器（声明式的事务） -->
     <bean id="transactionManager"
@@ -233,10 +61,8 @@
 
     <aop:config>
         <aop:pointcut id="paperManagerPointCuts"
-                      expression="execution(* com.pactera.papermg.*.service.*.*(..))"/>
+                      expression="execution(* net.dqsy.papermg.*.service.*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="paperManagerPointCuts"/>
     </aop:config>
 
-    <import resource="applicationContext-papertitle.xml"/>
-    <import resource="applicationContext-paperMessage.xml"/>
 </beans>

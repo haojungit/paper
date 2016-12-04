@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="net.dqsy.papermg.papermanager.po.PaperRecord"
-		table="paper_record" catalog="paper">
-		<id name="id" type="integer">
-			<column name="id" />
-			<generator class="native" />
-		</id>
-		<many-to-one name="paperTitle" column="paperTitleId" unique="true"  lazy="false" /> 
-		<property name="replyDate" type="string">
-			<column name="replyDate" length="24" />
-		</property>
-		<property name="site" type="string">
-			<column name="site" length="32" />
-		</property>
-		<property name="record" type="string">
-			<column name="record" length="1024" />
-		</property>
-		<property name="teamAdvice" type="string">
-			<column name="teamAdvice" length="1024" />
-		</property>
-		<property name="councilAdvice" type="string">
-			<column name="councilAdvice" length="1024" />
-		</property>
-		<property name="teamDate" type="string">
-			<column name="teamDate" length="24" />
-		</property>
-		<property name="counDate" type="string">
-			<column name="counDate" length="24" />
-		</property>
-		<property name="score" type="double">
-			<column name="score" length="8" />
-		</property>
-	</class>
+    <class name="net.dqsy.papermg.papermanager.po.PaperRecord"
+           table="paper_record" catalog="paper">
+        <id name="id" type="integer">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+        <many-to-one name="paperTitle" column="paperTitleId" unique="true" lazy="false"/>
+        <property name="replyDate" type="string">
+            <column name="replyDate" length="24"/>
+        </property>
+        <property name="site" type="string">
+            <column name="site" length="32"/>
+        </property>
+        <property name="record" type="string">
+            <column name="record" length="1024"/>
+        </property>
+        <property name="teamAdvice" type="string">
+            <column name="teamAdvice" length="1024"/>
+        </property>
+        <property name="councilAdvice" type="string">
+            <column name="councilAdvice" length="1024"/>
+        </property>
+        <property name="teamDate" type="string">
+            <column name="teamDate" length="24"/>
+        </property>
+        <property name="counDate" type="string">
+            <column name="counDate" length="24"/>
+        </property>
+        <property name="score" type="double">
+            <column name="score" length="8"/>
+        </property>
+    </class>
 </hibernate-mapping>

@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="net.dqsy.papermg.sysmanager.po.PaperStudent"
-		table="paper_student" catalog="paper">
-		<id name="studentId" type="java.lang.Integer">
-			<column name="studentId" />
-			<generator class="increment" />
-		</id>
-		<many-to-one name="paperUser"
+    <class name="net.dqsy.papermg.sysmanager.po.PaperStudent"
+           table="paper_student" catalog="paper">
+        <id name="studentId" type="java.lang.Integer">
+            <column name="studentId"/>
+            <generator class="increment"/>
+        </id>
+        <many-to-one name="paperUser"
                      class="net.dqsy.papermg.sysmanager.po.PaperUser" lazy="false">
-			<column name="userId" not-null="true" />
-		</many-to-one>
-		<property name="studentName" type="java.lang.String">
-			<column name="studentName" length="32" />
-		</property>
-		<property name="studentSex" type="java.lang.String">
-			<column name="studentSex" length="3" />
-		</property>
-		<property name="studentFaculty" type="java.lang.String">
-			<column name="studentFaculty" length="32" />
-		</property>
-		<property name="studentMajor" type="java.lang.String">
-			<column name="studentMajor" length="32" />
-		</property>
-		<property name="studentDirection" type="java.lang.String">
-			<column name="studentDirection" length="32" />
-		</property>
-		<property name="studentGrade" type="java.lang.String">
-			<column name="studentGrade" length="32" />
-		</property>
-		<property name="studentAge" type="java.lang.Integer">
-			<column name="studentAge" length="3" />
-		</property>
-		<property name="studentPhone" type="java.lang.String">
-			<column name="studentPhone" length="16" />
-		</property>
-		<property name="studentNumber" type="java.lang.String">
-			<column name="studentNumber" length="32" />
-		</property>
-		<property name="flag" type="integer">
-            <column name="flag" />
+            <column name="userId" not-null="true"/>
+        </many-to-one>
+        <property name="studentName" type="java.lang.String">
+            <column name="studentName" length="32"/>
         </property>
-	</class>
+        <property name="studentSex" type="java.lang.String">
+            <column name="studentSex" length="3"/>
+        </property>
+        <property name="studentFaculty" type="java.lang.String">
+            <column name="studentFaculty" length="32"/>
+        </property>
+        <property name="studentMajor" type="java.lang.String">
+            <column name="studentMajor" length="32"/>
+        </property>
+        <property name="studentDirection" type="java.lang.String">
+            <column name="studentDirection" length="32"/>
+        </property>
+        <property name="studentGrade" type="java.lang.String">
+            <column name="studentGrade" length="32"/>
+        </property>
+        <property name="studentAge" type="java.lang.Integer">
+            <column name="studentAge" length="3"/>
+        </property>
+        <property name="studentPhone" type="java.lang.String">
+            <column name="studentPhone" length="16"/>
+        </property>
+        <property name="studentNumber" type="java.lang.String">
+            <column name="studentNumber" length="32"/>
+        </property>
+        <property name="flag" type="integer">
+            <column name="flag"/>
+        </property>
+    </class>
 </hibernate-mapping>

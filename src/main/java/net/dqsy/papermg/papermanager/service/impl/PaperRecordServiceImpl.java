@@ -6,124 +6,102 @@ import net.dqsy.papermg.papermanager.po.PaperRecord;
 import net.dqsy.papermg.papermanager.po.PaperTitle;
 import net.dqsy.papermg.papermanager.service.PaperRecordService;
 import net.dqsy.papermg.util.PagingSupport;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PaperRecordServiceImpl
-  implements PaperRecordService
+        implements PaperRecordService
 {
-  private PaperRecordDAO paperRecordDAO;
-  private PaperTitleDAO paperTitleDAO;
+    @Autowired
+    private PaperRecordDAO paperRecordDAO;
+    @Autowired
+    private PaperTitleDAO paperTitleDAO;
 
-  public void setPaperRecordDAO(PaperRecordDAO paperRecordDAO)
-  {
-    this.paperRecordDAO = paperRecordDAO;
-  }
-
-  public void setPaperTitleDAO(PaperTitleDAO paperTitleDAO)
-  {
-    this.paperTitleDAO = paperTitleDAO;
-  }
-
-  public boolean save(Object o)
-  {
-    try
-    {
-      this.paperRecordDAO.save((PaperRecord)o);
-      return true;
-    } catch (Exception e) {
-      e.printStackTrace();
+    public boolean save(Object o) {
+        try {
+            this.paperRecordDAO.save((PaperRecord) o);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
-    return false;
-  }
 
-  public boolean update(Object o)
-  {
-    try
-    {
-      this.paperRecordDAO.update((PaperRecord)o);
-      return true;
-    } catch (Exception e) {
-      e.printStackTrace();
+    public boolean update(Object o) {
+        try {
+            this.paperRecordDAO.update((PaperRecord) o);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
-    return false;
-  }
 
-  public PagingSupport find(String hql, int numberOfPage, int countOfPage)
-  {
-    try
-    {
-      return this.paperRecordDAO.find(hql, numberOfPage, countOfPage);
-    } catch (Exception e) {
-      e.printStackTrace();
+    public PagingSupport find(String hql, int numberOfPage, int countOfPage) {
+        try {
+            return this.paperRecordDAO.find(hql, numberOfPage, countOfPage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
-    return null;
-  }
 
-  public Object findById(int id)
-  {
-    try
-    {
-      return this.paperRecordDAO.findById("com.pactera.papermg.papermanager.po.PaperRecord", id);
-    } catch (Exception e) {
-      e.printStackTrace();
+    public Object findById(int id) {
+        try {
+            return this.paperRecordDAO.findById("com.pactera.papermg.papermanager.po.PaperRecord", id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
-    return null;
-  }
 
-  public PagingSupport findByProperty(String property, String value, int numberOfPage, int countOfPage)
-  {
-    try
-    {
-      return this.paperRecordDAO.findByProperty("PaperRecord", property, value, numberOfPage, countOfPage);
-    } catch (Exception e) {
-      e.printStackTrace();
+    public PagingSupport findByProperty(String property, String value, int numberOfPage, int countOfPage) {
+        try {
+            return this.paperRecordDAO.findByProperty("PaperRecord", property, value, numberOfPage, countOfPage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
-    return null;
-  }
 
-  public PagingSupport findByProperty(String property, int value, int numberOfPage, int countOfPage)
-  {
-    try
-    {
-      return this.paperRecordDAO.findByProperty("PaperRecord", property, value, numberOfPage, countOfPage);
-    } catch (Exception e) {
-      e.printStackTrace();
+    public PagingSupport findByProperty(String property, int value, int numberOfPage, int countOfPage) {
+        try {
+            return this.paperRecordDAO.findByProperty("PaperRecord", property, value, numberOfPage, countOfPage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
-    return null;
-  }
 
-  public PagingSupport findAll(int numberOfPage, int countOfPage)
-  {
-    try
-    {
-      return this.paperRecordDAO.findAll("PaperRecord", numberOfPage, countOfPage);
-    } catch (Exception e) {
-      e.printStackTrace();
+    public PagingSupport findAll(int numberOfPage, int countOfPage) {
+        try {
+            return this.paperRecordDAO.findAll("PaperRecord", numberOfPage, countOfPage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
-    return null;
-  }
 
-  public boolean del(Object o)
-  {
-    try
-    {
-      this.paperRecordDAO.delete(o);
-      return true;
-    } catch (Exception e) {
-      e.printStackTrace();
+    public boolean del(Object o) {
+        try {
+            this.paperRecordDAO.delete(o);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
-    return false;
-  }
 
-  public boolean writeRecord(int titleId, PaperRecord record)
-  {
-    try {
-      PaperTitle title = (PaperTitle)this.paperTitleDAO.findById("com.pactera.papermg.papermanager.po.PaperTitle", titleId);
-      record.setPaperTitle(title);
-      this.paperRecordDAO.save(record);
-      return true;
-    } catch (Exception e) {
-      e.printStackTrace();
+    public boolean writeRecord(int titleId, PaperRecord record) {
+        try {
+            PaperTitle title = (PaperTitle) this.paperTitleDAO.findById("com.pactera.papermg.papermanager.po.PaperTitle", titleId);
+            record.setPaperTitle(title);
+            this.paperRecordDAO.save(record);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
-    return false;
-  }
 }

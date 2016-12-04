@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="net.dqsy.papermg.papermanager.po.PaperCouncil"
-		table="paper_council" catalog="paper">
-		<id name="councilId" type="integer">
-			<column name="councilId" length="11" />
-			<generator class="native" />
-		</id>
-		<property name="department" type="string">
-			<column name="department" length="32" />
-		</property>
-		<property name="major" type="string">
-			<column name="major" length="32" />
-		</property>
-		<property name="grade" type="string">
-			<column name="grade" length="32" />
-		</property>
-		<property name="deanSug" type="string">
-			<column name="deanSug" length="512" />
-		</property>
-		<property name="deanDate" type="java.util.Date">
-			<column name="deanDate" length="24" />
-		</property>
-		<property name="DeanOfficeSug" type="string">
-			<column name="DeanOfficeSug" length="512" />
-		</property>
-		<property name="DeanOfficeDate" type="java.util.Date">
-			<column name="DeanOfficeDate" length="24" />
-		</property>
-		<set name="councilman" inverse="false" cascade="save-update" lazy="false"
-			order-by="councilmanId">
-			<key>
-				<column name="councilId" />
-			</key>
-			<one-to-many class="net.dqsy.papermg.papermanager.po.PaperCouncilman" />
-		</set>
-		<property name="state" type="integer">
-			<column name="state" length="8" />
-		</property>
+    <class name="net.dqsy.papermg.papermanager.po.PaperCouncil"
+           table="paper_council" catalog="paper">
+        <id name="councilId" type="integer">
+            <column name="councilId" length="11"/>
+            <generator class="native"/>
+        </id>
+        <property name="department" type="string">
+            <column name="department" length="32"/>
+        </property>
+        <property name="major" type="string">
+            <column name="major" length="32"/>
+        </property>
+        <property name="grade" type="string">
+            <column name="grade" length="32"/>
+        </property>
+        <property name="deanSug" type="string">
+            <column name="deanSug" length="512"/>
+        </property>
+        <property name="deanDate" type="java.util.Date">
+            <column name="deanDate" length="24"/>
+        </property>
+        <property name="DeanOfficeSug" type="string">
+            <column name="DeanOfficeSug" length="512"/>
+        </property>
+        <property name="DeanOfficeDate" type="java.util.Date">
+            <column name="DeanOfficeDate" length="24"/>
+        </property>
+        <set name="councilman" inverse="false" cascade="save-update" lazy="false"
+             order-by="councilmanId">
+            <key>
+                <column name="councilId"/>
+            </key>
+            <one-to-many class="net.dqsy.papermg.papermanager.po.PaperCouncilman"/>
+        </set>
+        <property name="state" type="integer">
+            <column name="state" length="8"/>
+        </property>
 
-	</class>
+    </class>
 </hibernate-mapping>
