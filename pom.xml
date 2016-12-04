@@ -163,11 +163,11 @@
             <version>2.1.v20100127</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.directwebremoting</groupId>
-            <artifactId>dwr</artifactId>
-            <version>3.0.1-RELEASE</version>
-        </dependency>
+         <dependency>
+             <groupId>org.directwebremoting</groupId>
+             <artifactId>dwr</artifactId>
+             <version>3.0.M1</version>
+         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
