@@ -288,6 +288,7 @@ function addStudent(infoID) {
 }
 
 function updateStudent(studentID) {
+	alert(studentID);
 
 	if (!$('#studentform').form('validate'))
 		return false;

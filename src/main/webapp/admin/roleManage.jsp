@@ -14,9 +14,7 @@
 
 <script src="<%=basePath%>jquery-easyui/jquery-1.8.0.js"></script>
 <script src="<%=basePath%>jquery-easyui/jquery.easyui.min.js"></script>
-<script src='<%=basePath%>dwr/interface/student.js'></script>
-<script src='<%=basePath%>dwr/engine.js'></script>
-<script src='<%=basePath%>dwr/util.js'></script>
+
 <script src='<%=basePath%>js/roleManage.js'></script>
 <script src='<%=basePath%>js/public.js'></script>
 

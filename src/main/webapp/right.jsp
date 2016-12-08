@@ -92,7 +92,7 @@
 
 		addHomeImages($('#description').val(), $('#roleId').val());
 
-		listenNewMsg();
+		//listenNewMsg();
 	</script>
 
 </body>
