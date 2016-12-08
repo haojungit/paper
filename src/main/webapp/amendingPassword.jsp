@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css"
 	href="<%=basePath%>jquery-easyui/themes/icon.css">
 
+
 <script src="<%=basePath%>dwr/interface/userDWR.js"></script>
 <script src="<%=basePath%>dwr/engine.js"></script>
 <script src="<%=basePath%>dwr/util.js"></script>
