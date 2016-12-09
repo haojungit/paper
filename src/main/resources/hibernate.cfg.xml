@@ -42,9 +42,7 @@
 
 		<!-- JDBC URL -->
 
-		<property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/paper?
-
-			characterEncoding=utf-8</property>
+		<property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/paper?characterEncoding=utf-8&amp;useSSL=true</property>
 
 		<!-- 数据库用户名 -->
 
@@ -55,6 +53,7 @@
 		<property name="hibernate.connection.password">1234</property>
 
 		<!-- 映射文件 -->
+
 
 		<mapping resource="net/dqsy/papermg/sysmanager/po/PaperStudent.hbm.xml" />
 		<mapping resource="net/dqsy/papermg/sysmanager/po/PaperTeacher.hbm.xml" />

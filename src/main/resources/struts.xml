@@ -142,19 +142,19 @@
 		</action>
 
 		<!-- 上传文件的action -->
-		<action name="uploadPaper" class="net.dqsy.publics.upload.UploadAction"
+		<action name="uploadPaper" class="net.dqsy.publics.upload.UploadController"
 			method="uploadPaper">
 			<result name="success">../uploadSuccess.jsp</result>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 
-		<action name="uploadPaperTemplate" class="net.dqsy.publics.upload.UploadAction"
+		<action name="uploadPaperTemplate" class="net.dqsy.publics.upload.UploadController"
 			method="uploadPaperTemplate">
 			<result name="success">../uploadSuccess.jsp</result>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 
-		<action name="uploadExcel" class="net.dqsy.publics.upload.UploadAction"
+		<action name="uploadExcel" class="net.dqsy.publics.upload.UploadController"
 			method="uploadExcel">
 			<result name="SUCCESS" type="json">
 				<param name="root">message</param>
@@ -163,7 +163,7 @@
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 
-		<action name="importStudent" class="net.dqsy.publics.upload.UploadAction"
+		<action name="importStudent" class="net.dqsy.publics.upload.UploadController"
 			method="importStudent">
 			<result name="SUCCESS" type="json">
 				<param name="root">message</param>
@@ -172,7 +172,7 @@
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 
-		<action name="importTeacher" class="net.dqsy.publics.upload.UploadAction"
+		<action name="importTeacher" class="net.dqsy.publics.upload.UploadController"
 			method="importTeacher">
 			<result name="SUCCESS" type="json">
 				<param name="root">message</param>
@@ -181,14 +181,14 @@
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 
-		<action name="getNameList" class="net.dqsy.publics.upload.DownloadAction"
+		<action name="getNameList" class="net.dqsy.publics.upload.DownloadController"
 			method="getNameList">
 			<result name="SUCCESS" type="json">
 				<param name="root">fnList</param>
 			</result>
 		</action>
 
-		<action name="download" class="net.dqsy.publics.upload.DownloadAction">
+		<action name="download" class="net.dqsy.publics.upload.DownloadController">
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>
 				<param name="contentDisposition">attachment;filename="${fname}"</param>
@@ -197,7 +197,7 @@
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 
-		<action name="getPaper" class="net.dqsy.publics.upload.DownloadAction">
+		<action name="getPaper" class="net.dqsy.publics.upload.DownloadController">
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>
 				<param name="contentDisposition">attachment;filename="${fname}"</param>
@@ -206,7 +206,7 @@
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 
-		<action name="getPaperTemplate" class="net.dqsy.publics.upload.DownloadAction">
+		<action name="getPaperTemplate" class="net.dqsy.publics.upload.DownloadController">
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>
 				<param name="contentDisposition">attachment;filename="${fname}"</param>

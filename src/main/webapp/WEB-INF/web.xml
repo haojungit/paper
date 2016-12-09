@@ -33,45 +33,6 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-
-    <filter>
-        <filter-name>struts2</filter-name>
-        <filter-class>
-            org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
-        </filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>struts2</filter-name>
-        <url-pattern>/struts/*</url-pattern>
-    </filter-mapping>
-
-
-    <!-- 配置DWR -->
-    <servlet>
-        <servlet-name>dwr-invoker</servlet-name>
-        <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
-        <!-- 是否允许调试 ,如果要在浏览器中调用,必须设置为true -->
-        <init-param>
-            <param-name>debug</param-name>
-            <param-value>true</param-value>
-        </init-param>
-        <init-param>
-            <param-name>crossDomainSessionSecurity</param-name>
-            <param-value>false</param-value>
-        </init-param>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>dwr-invoker</servlet-name>
-        <url-pattern>/dwr/*</url-pattern>
-    </servlet-mapping>
-
-    <session-config>
-
-        <session-timeout>90</session-timeout>
-
-    </session-config>
-
     <!-- 著名的 Character Encoding filter -->
     <filter>
         <filter-name>encodingFilter</filter-name>
@@ -89,7 +50,24 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <servlet>
+        <servlet-name>core</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:core-servlet.xml</param-value>
 
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>core</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 
     <!-- 验证码Servlet -->
     <servlet>

@@ -1,15 +1,12 @@
 package net.dqsy.publics.upload;
 
-import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.conversion.annotations.Conversion;
 import net.dqsy.papermg.papermanager.po.PaperGuidancerecord;
 import net.dqsy.papermg.papermanager.service.PaperGuidancerecordService;
 import net.dqsy.papermg.sysmanager.service.PaperStudentService;
 import net.dqsy.papermg.sysmanager.service.PaperTeacherService;
 import org.apache.commons.io.FileUtils;
-import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,9 +16,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-@Conversion
-@Scope("prototype")
-public class UploadAction extends ActionSupport {
+@Controller
+public class UploadController {
 
     @Autowired
     private PaperGuidancerecordService paperGuidancerecordService;
@@ -196,9 +192,10 @@ public class UploadAction extends ActionSupport {
     }
 
     private String getRealPath(String path) {
-        String realPath = ServletActionContext.getServletContext().getRealPath(
-                path);
-        return realPath;
+//        String realPath = ServletActionContext.getServletContext().getRealPath(
+//                path);
+        // TODO 获取路径
+        return "";
     }
 
     public String getTitleId() {

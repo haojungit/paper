@@ -12,7 +12,10 @@
 
 
     <!--配置包扫描-->
-    <context:component-scan base-package="net.dqsy"/>
+    <context:component-scan base-package="net.dqsy.*.*">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+    </context:component-scan>
     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
         <property name="sessionFactory">
             <ref bean="sessionFactory"/>
