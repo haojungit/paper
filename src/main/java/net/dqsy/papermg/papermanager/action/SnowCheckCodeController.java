@@ -1,10 +1,9 @@
-package net.dqsy.papermg.util;
+package net.dqsy.papermg.papermanager.action;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,7 +15,7 @@ import java.io.IOException;
 import java.util.Random;
 
 @Controller
-public class SnowCheckCode extends HttpServlet {
+public class SnowCheckCodeController {
 
     @RequestMapping("/SnowCheckCode")
     public void checkCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -27,11 +26,10 @@ public class SnowCheckCode extends HttpServlet {
         response.setContentType("image/jpeg");
         int width = 100;
         int height = 35;
-        BufferedImage image = new BufferedImage(width, height,
-                1);
+        BufferedImage image = new BufferedImage(width, height, 1);
         Graphics g = image.getGraphics();
 
-        File bgImgFile = new File(request.getRealPath("images/checkCode_bg.jpg"));
+        File bgImgFile = new File(request.getRealPath("/WEB-INF/images/checkCode_bg.jpg"));
         Image src = ImageIO.read(bgImgFile);
         g.drawImage(src, 0, 0, width, height, null);
 

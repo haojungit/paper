@@ -12,7 +12,7 @@
 
 
     <!--配置包扫描-->
-    <context:component-scan base-package="net.dqsy.*.*">
+    <context:component-scan base-package="net.dqsy.papermg.*.*">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
