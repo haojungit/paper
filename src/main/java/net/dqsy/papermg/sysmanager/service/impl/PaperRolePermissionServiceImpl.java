@@ -8,6 +8,8 @@ import net.dqsy.papermg.util.PaperManagerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+
 @Service
 public class PaperRolePermissionServiceImpl
         implements PaperRolePermissionService
@@ -35,9 +37,9 @@ public class PaperRolePermissionServiceImpl
         return true;
     }
 
-    public PagingSupport find(String hql, int numberOfPage, int countOfPage) {
+    public PagingSupport find(String hql, HashMap<String, Object> map, int numberOfPage, int countOfPage) {
         try {
-            return this.paperRolePermissionDAO.find(hql, numberOfPage, countOfPage);
+            return this.paperRolePermissionDAO.find(hql, map, numberOfPage, countOfPage);
         } catch (PaperManagerException e) {
             e.printStackTrace();
         }
@@ -100,7 +102,7 @@ public class PaperRolePermissionServiceImpl
         try {
             return this.paperRolePermissionDAO.find(
                     "select paperPermission.id from PaperRolePermission where paperRole.roleId = " +
-                            roleID, 1, 999);
+                            roleID, null,  1, 999);
         } catch (PaperManagerException e) {
             e.printStackTrace();
         }

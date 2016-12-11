@@ -10,6 +10,7 @@ import net.dqsy.papermg.util.PaperManagerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -50,7 +51,7 @@ public class PaperGuidancerecordServiceImpl
         try {
             List list = find(
                     "from PaperGuidancerecord where paperTitle.paperTitleId = " +
-                            titleId + "order by guidId ASC", 1, 999)
+                            titleId + "order by guidId ASC", null, 1, 999)
                     .getList();
             PaperGuidancerecord paperGuidancerecord1 =
                     (PaperGuidancerecord) list
@@ -84,9 +85,9 @@ public class PaperGuidancerecordServiceImpl
         return false;
     }
 
-    public PagingSupport find(String hql, int numberOfPage, int countOfPage) {
+    public PagingSupport find(String hql, HashMap<String, Object> map, int numberOfPage, int countOfPage) {
         try {
-            return this.paperGuidancerecordDAO.find(hql, numberOfPage, countOfPage);
+            return this.paperGuidancerecordDAO.find(hql, map, numberOfPage, countOfPage);
         } catch (PaperManagerException e) {
             e.printStackTrace();
         }
@@ -97,7 +98,7 @@ public class PaperGuidancerecordServiceImpl
         try {
             return find(
                     "select new com.pactera.papermg.papermanager.po.PaperGuidancerecord(guidId,guidance,guidanceType,guidanceDate) from PaperGuidancerecord where paperTitle.paperTitleId = " +
-                            titleId, 1, 999).getList();
+                            titleId, null, 1, 999).getList();
         } catch (PaperManagerException e) {
             e.printStackTrace();
         }

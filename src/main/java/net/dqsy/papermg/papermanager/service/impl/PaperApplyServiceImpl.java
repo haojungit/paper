@@ -9,6 +9,7 @@ import net.dqsy.papermg.util.PagingSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -47,7 +48,7 @@ public class PaperApplyServiceImpl
         try {
             List list = find(
                     "from PaperApply where paperTitle.paperTitleId= " + titleId,
-                    1, 999).getList();
+                    null, 1, 999).getList();
 
             PaperApply pa = (PaperApply) list.get(list.size() - 1);
 
@@ -68,7 +69,7 @@ public class PaperApplyServiceImpl
         try {
             return find(
                     "select new com.pactera.papermg.papermanager.po.PaperApply(aplyId,applyReason,applyDate,score,allowReply,inpuDate) from PaperApply where paperTitle.paperTitleId = " +
-                            titleId, 1, 999).getList();
+                            titleId, null, 1, 999).getList();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -85,9 +86,9 @@ public class PaperApplyServiceImpl
         return false;
     }
 
-    public PagingSupport find(String hql, int numberOfPage, int countOfPage) {
+    public PagingSupport find(String hql, HashMap<String, Object> map, int numberOfPage, int countOfPage) {
         try {
-            return this.paperApplyDAO.find(hql, numberOfPage, countOfPage);
+            return this.paperApplyDAO.find(hql, map, numberOfPage, countOfPage);
         } catch (Exception e) {
             e.printStackTrace();
         }

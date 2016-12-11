@@ -1,5 +1,7 @@
 package net.dqsy.papermg.util;
 
+import java.util.HashMap;
+
 public abstract interface BaseDAO {
     public abstract void save(Object paramObject)
             throws PaperManagerException;
@@ -7,10 +9,10 @@ public abstract interface BaseDAO {
     public abstract void update(Object paramObject)
             throws PaperManagerException;
 
-    public abstract PagingSupport find(String paramString, int paramInt1, int paramInt2)
+    public abstract PagingSupport find(String paramString, HashMap<String, Object> map, int paramInt1, int paramInt2)
             throws PaperManagerException;
 
-    public abstract Object findById(String paramString, int paramInt)
+    public abstract Object findById(Object object, int paramInt)
             throws PaperManagerException;
 
     public abstract PagingSupport findByProperty(String paramString1, String paramString2, String paramString3, int paramInt1, int paramInt2)

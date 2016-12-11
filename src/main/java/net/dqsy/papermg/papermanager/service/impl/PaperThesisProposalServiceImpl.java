@@ -9,6 +9,7 @@ import net.dqsy.papermg.util.PagingSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 @Service
 public class PaperThesisProposalServiceImpl
@@ -53,9 +54,9 @@ public class PaperThesisProposalServiceImpl
         return false;
     }
 
-    public PagingSupport find(String hql, int numberOfPage, int countOfPage) {
+    public PagingSupport find(String hql, HashMap<String, Object> map, int numberOfPage, int countOfPage) {
         try {
-            return this.paperThesisProposalDAO.find(hql, numberOfPage, countOfPage);
+            return this.paperThesisProposalDAO.find(hql, map, numberOfPage, countOfPage);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -130,7 +131,7 @@ public class PaperThesisProposalServiceImpl
             PaperThesisProposal pto =
                     (PaperThesisProposal) find(
                             "from PaperThesisProposal where paperTitle.paperTitleId= " +
-                                    titleId, 1, 1).getList().get(0);
+                                    titleId, null, 1, 1).getList().get(0);
             pto.setThesisProposalTeacherSug(paperThesisProposal
                     .getThesisProposalTeacherSug());
             pto.setTeacherSugDate(paperThesisProposal.getTeacherSugDate());
@@ -147,7 +148,7 @@ public class PaperThesisProposalServiceImpl
         try {
             return find(
                     "select new com.pactera.papermg.papermanager.po.PaperThesisProposal(thesisProposalReportId,thesisProposalBackground,thesisProposalResearchContent,thesisProposalResearchMethod,thesisProposalResearchSchedule,thesisProposalReference,thesisProposalTeacherSug,teacherSugDate) from PaperThesisProposal where paperTitle.paperTitleId = " +
-                            titleId, 1, 999).getList();
+                            titleId, null, 1, 999).getList();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -17,6 +17,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -146,7 +147,7 @@ public class PaperStudentServiceImpl
 
             List list = this.paperUserRoleService.find(
                     "from PaperUserRole where paperUser.userId = " +
-                            paperUser.getUserId(), 1, 999).getList();
+                            paperUser.getUserId(), null, 1, 999).getList();
 
             if ((paperStudent == null) || (paperUser == null)) {
                 throw new PaperManagerException();
@@ -169,9 +170,9 @@ public class PaperStudentServiceImpl
         return true;
     }
 
-    public PagingSupport find(String hql, int numberOfPage, int countOfPage) {
+    public PagingSupport find(String hql, HashMap<String, Object> map, int numberOfPage, int countOfPage) {
         try {
-            return this.paperStudentDAO.find(hql, numberOfPage, countOfPage);
+            return this.paperStudentDAO.find(hql, map, numberOfPage, countOfPage);
         } catch (PaperManagerException e) {
             e.printStackTrace();
         }
@@ -181,7 +182,7 @@ public class PaperStudentServiceImpl
     public PaperStudent findById(int id) {
         try {
             return (PaperStudent) this.paperStudentDAO.findById(
-                    "net.dqsy.papermg.sysmanager.po.PaperStudent", id);
+                    PaperStudent.class, id);
         } catch (PaperManagerException e) {
             e.printStackTrace();
         }
@@ -230,8 +231,12 @@ public class PaperStudentServiceImpl
 
     public PaperStudent findByNumber(String number) {
         try {
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("number", number);
+            String hql = "from PaperStudent where studentNumber = :number";
+
             List list = this.paperStudentDAO.find(
-                    "from PaperStudent where studentNumber = " + number, 1, 1)
+                    hql, map, 1, 1)
                     .getList();
             if (list.size() == 1)
                 return (PaperStudent) list.get(0);
@@ -246,7 +251,7 @@ public class PaperStudentServiceImpl
         try {
             return this.paperStudentDAO
                     .find("select new net.dqsy.papermg.sysmanager.vo.StudentMajorVO(studentMajor) from PaperStudent where studentFaculty = '" +
-                            teacherUnits + "' group by studentMajor", 1, 9999)
+                            teacherUnits + "' group by studentMajor", null, 1, 9999)
                     .getList();
         } catch (Exception e) {
             e.printStackTrace();

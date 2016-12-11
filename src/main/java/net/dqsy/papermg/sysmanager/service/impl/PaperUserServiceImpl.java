@@ -9,6 +9,7 @@ import net.dqsy.papermg.util.PaperManagerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -45,10 +46,10 @@ public class PaperUserServiceImpl
         return true;
     }
 
-    public PagingSupport find(String hql, int numberOfPage, int countOfPage)
+    public PagingSupport find(String hql, HashMap<String, Object> map, int numberOfPage, int countOfPage)
             throws PaperManagerException {
         try {
-            return this.paperUserDAO.find(hql, numberOfPage, countOfPage);
+            return this.paperUserDAO.find(hql, map, numberOfPage, countOfPage);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,15 +107,15 @@ public class PaperUserServiceImpl
     }
 
     public List login(String userName, String passWord) {
+        HashMap<String, Object> map = new HashMap<>();
         try {
-            String pwd =
-                    (String) find(
-                            "select passWord from PaperUser where userName = '" +
-                                    userName + "'", 1, 1).getList().get(0);
+            String hql = "select passWord from PaperUser where userName = :userName";
+            map.put("userName", userName);
+            String pwd = (String) paperUserDAO.find(hql, map, 1, 1).getList().get(0);
+
             if (pwd.equals(MD5Encoder.encode(passWord)))
                 return find(
-                        "from LoginVO where Username = '" + userName +
-                                "' order by roleid,porder asc", 1, 999).getList();
+                        "from LoginVO where Username = :userName order by roleid,porder asc",map, 1, 999).getList();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

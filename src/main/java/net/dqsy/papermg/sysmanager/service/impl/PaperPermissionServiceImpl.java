@@ -7,6 +7,8 @@ import net.dqsy.papermg.util.PagingSupport;
 import net.dqsy.papermg.util.PaperManagerException;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+
 @Service
 public class PaperPermissionServiceImpl
         implements PaperPermissionService
@@ -33,9 +35,9 @@ public class PaperPermissionServiceImpl
         return true;
     }
 
-    public PagingSupport find(String hql, int numberOfPage, int countOfPage) {
+    public PagingSupport find(String hql, HashMap<String, Object> map, int numberOfPage, int countOfPage) {
         try {
-            return this.paperPermissionDAO.find(hql, numberOfPage, countOfPage);
+            return this.paperPermissionDAO.find(hql, map, numberOfPage, countOfPage);
         } catch (PaperManagerException e) {
             e.printStackTrace();
         }

@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -126,7 +127,7 @@ public class PaperTeacherServiceImpl
             PaperUserRole paperUserRole = null;
             List list = this.paperUserRoleService.find(
                     "from PaperUserRole where paperUser.userId = " +
-                            paperUser.getUserId(), 1, 999).getList();
+                            paperUser.getUserId(), null, 1, 999).getList();
 
             if ((paperTeacher == null) || (paperUser == null)) {
                 throw new PaperManagerException();
@@ -149,9 +150,9 @@ public class PaperTeacherServiceImpl
         return true;
     }
 
-    public PagingSupport find(String hql, int numberOfPage, int countOfPage) {
+    public PagingSupport find(String hql, HashMap<String, Object> map, int numberOfPage, int countOfPage) {
         try {
-            return this.paperTeacherDAO.find(hql, numberOfPage, countOfPage);
+            return this.paperTeacherDAO.find(hql, map, numberOfPage, countOfPage);
         } catch (PaperManagerException e) {
             e.printStackTrace();
         }
@@ -172,7 +173,7 @@ public class PaperTeacherServiceImpl
         try {
             List list = this.paperTeacherDAO.find(
                     "from PaperTeacher where teacherNumber = '" + number + "'",
-                    1, 1).getList();
+                  null,  1, 1).getList();
             if (list.size() == 1)
                 return (PaperTeacher) list.get(0);
         } catch (Exception e) {
@@ -216,7 +217,7 @@ public class PaperTeacherServiceImpl
         try {
             return find(
                     "select new net.dqsy.papermg.sysmanager.po.PaperTeacher(teacherId,teacherName) from PaperTeacher where teacherUnits = '" +
-                            teacherUnits + "'", 1, 99999).getList();
+                            teacherUnits + "'", null, 1, 99999).getList();
         } catch (Exception e) {
             e.printStackTrace();
         }

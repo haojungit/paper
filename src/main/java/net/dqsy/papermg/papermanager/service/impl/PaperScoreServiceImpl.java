@@ -9,6 +9,7 @@ import net.dqsy.papermg.util.PagingSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -40,9 +41,9 @@ public class PaperScoreServiceImpl
         return false;
     }
 
-    public PagingSupport find(String hql, int numberOfPage, int countOfPage) {
+    public PagingSupport find(String hql, HashMap<String, Object> map, int numberOfPage, int countOfPage) {
         try {
-            return this.paperScoreDAO.find(hql, numberOfPage, countOfPage);
+            return this.paperScoreDAO.find(hql, map, numberOfPage, countOfPage);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,7 +98,7 @@ public class PaperScoreServiceImpl
 
     public PaperScore findScoreByTitleId(int id) {
         try {
-            List scoreList = this.paperTitleDAO.find("from PaperScore where paperTitle.paperTitleId = " + id, 1, 999).getList();
+            List scoreList = this.paperTitleDAO.find("from PaperScore where paperTitle.paperTitleId = " + id, null,  1, 999).getList();
 
             if ((scoreList == null) || (scoreList.size() == 0)) {
                 PaperTitle t = (PaperTitle) this.paperTitleDAO.findById("com.pactera.papermg.papermanager.po.PaperTitle", id);
@@ -107,7 +108,7 @@ public class PaperScoreServiceImpl
                 }
 
                 PaperScore s = new PaperScore();
-                this.paperTitleDAO.find("update paper_score set PaperTitleId=" + id, 1, 999);
+                this.paperTitleDAO.find("update paper_score set PaperTitleId=" + id, null, 1, 999);
 
                 s.setPaperTitle(t);
 
@@ -118,7 +119,7 @@ public class PaperScoreServiceImpl
 
             PaperScore score = (PaperScore) scoreList.get(scoreList.size() - 1);
 
-            List paList = this.paperTitleDAO.find("select score from PaperApply where paperTitle.paperTitleId=" + id, 1, 999).getList();
+            List paList = this.paperTitleDAO.find("select score from PaperApply where paperTitle.paperTitleId=" + id, null, 1, 999).getList();
             String strScore = "";
             if ((paList != null) && (paList.size() != 0)) {
                 strScore = (String) paList.get(paList.size() - 1);
@@ -143,7 +144,7 @@ public class PaperScoreServiceImpl
 
     public int teacherInput(int titleId, String comment, double score) {
         try {
-            List scoreList = this.paperTitleDAO.find("from PaperScore where paperTitle.paperTitleId = " + titleId, 1, 999).getList();
+            List scoreList = this.paperTitleDAO.find("from PaperScore where paperTitle.paperTitleId = " + titleId, null, 1, 999).getList();
             if ((scoreList == null) || (scoreList.size() == 0)) {
                 PaperScore sc = new PaperScore();
                 PaperTitle t = (PaperTitle) this.paperTitleDAO.findById("com.pactera.papermg.papermanager.po.PaperTitle", titleId);
@@ -169,7 +170,7 @@ public class PaperScoreServiceImpl
 
     public int teamInput(int titleId, String comment, double score) {
         try {
-            List scoreList = this.paperTitleDAO.find("from PaperScore where paperTitle.paperTitleId = " + titleId, 1, 999).getList();
+            List scoreList = this.paperTitleDAO.find("from PaperScore where paperTitle.paperTitleId = " + titleId, null, 1, 999).getList();
             if ((scoreList == null) || (scoreList.size() == 0)) {
                 PaperScore sc = new PaperScore();
                 PaperTitle t = (PaperTitle) this.paperTitleDAO.findById("com.pactera.papermg.papermanager.po.PaperTitle", titleId);
@@ -195,7 +196,7 @@ public class PaperScoreServiceImpl
 
     public int councilInput(int titleId, String comment) {
         try {
-            List scoreList = this.paperTitleDAO.find("from PaperScore where paperTitle.paperTitleId = " + titleId, 1, 999).getList();
+            List scoreList = this.paperTitleDAO.find("from PaperScore where paperTitle.paperTitleId = " + titleId, null, 1, 999).getList();
             if ((scoreList == null) || (scoreList.size() == 0)) {
                 PaperScore sc = new PaperScore();
                 PaperTitle t = (PaperTitle) this.paperTitleDAO.findById("com.pactera.papermg.papermanager.po.PaperTitle", titleId);

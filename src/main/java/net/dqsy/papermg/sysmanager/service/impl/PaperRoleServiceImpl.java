@@ -8,6 +8,8 @@ import net.dqsy.papermg.util.PaperManagerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+
 @Service
 public class PaperRoleServiceImpl
         implements PaperRoleService
@@ -35,9 +37,9 @@ public class PaperRoleServiceImpl
         return true;
     }
 
-    public PagingSupport find(String hql, int numberOfPage, int countOfPage) {
+    public PagingSupport find(String hql, HashMap<String, Object> map, int numberOfPage, int countOfPage) {
         try {
-            return this.paperRoleDAO.find(hql, numberOfPage, countOfPage);
+            return this.paperRoleDAO.find(hql, map, numberOfPage, countOfPage);
         } catch (PaperManagerException e) {
             e.printStackTrace();
         }
@@ -96,7 +98,7 @@ public class PaperRoleServiceImpl
     public PagingSupport getAllRole() {
         try {
             return this.paperRoleDAO
-                    .find("select new net.dqsy.papermg.sysmanager.vo.GetAllRoleVO(roleId,roleName,description,flag) from PaperRole order by roleId ASC",
+                    .find("select new net.dqsy.papermg.sysmanager.vo.GetAllRoleVO(roleId,roleName,description,flag) from PaperRole order by roleId ASC", null,
                             1, 999);
         } catch (PaperManagerException e) {
             e.printStackTrace();
@@ -108,7 +110,7 @@ public class PaperRoleServiceImpl
         try {
             return this.paperRoleDAO
                     .find("select new net.dqsy.papermg.sysmanager.po.PaperPermission(id,description) from PaperPermission order by id ASC",
-                            1, 999);
+                       null,     1, 999);
         } catch (PaperManagerException e) {
             e.printStackTrace();
         }

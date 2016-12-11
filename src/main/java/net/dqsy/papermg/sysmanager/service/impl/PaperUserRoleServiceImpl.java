@@ -8,6 +8,8 @@ import net.dqsy.papermg.util.PaperManagerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+
 @Service
 public class PaperUserRoleServiceImpl
         implements PaperUserRoleService
@@ -35,9 +37,9 @@ public class PaperUserRoleServiceImpl
         return true;
     }
 
-    public PagingSupport find(String hql, int numberOfPage, int countOfPage) {
+    public PagingSupport find(String hql, HashMap<String, Object> map, int numberOfPage, int countOfPage) {
         try {
-            return this.paperUserRoleDAO.find(hql, numberOfPage, countOfPage);
+            return this.paperUserRoleDAO.find(hql, map, numberOfPage, countOfPage);
         } catch (PaperManagerException e) {
             e.printStackTrace();
         }
@@ -98,7 +100,7 @@ public class PaperUserRoleServiceImpl
         try {
             return this.paperUserRoleDAO.find(
                     "select paperRole.roleId from PaperUserRole where paperUser.userId = " +
-                            userID, 1, 999);
+                            userID, null, 1, 999);
         } catch (PaperManagerException e) {
             e.printStackTrace();
         }

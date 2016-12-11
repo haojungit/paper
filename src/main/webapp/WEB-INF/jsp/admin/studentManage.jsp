@@ -14,10 +14,6 @@
 
 <script src="<%=basePath%>jquery-easyui/jquery-1.8.0.js"></script>
 <script src="<%=basePath%>jquery-easyui/jquery.easyui.min.js"></script>
-
-<script src='<%=basePath%>dwr/interface/student.js'></script>
-<script src='<%=basePath%>dwr/engine.js'></script>
-<script src='<%=basePath%>dwr/util.js'></script>
 <script src='<%=basePath%>js/studentManage.js'></script>
 <script src='<%=basePath%>js/public.js'></script>
 
@@ -25,7 +21,7 @@
 
 	<table style="width: 100%; border: 0; cellpadding: 0; cellspacing: 0;">
 		<tr>
-			<td style="background: url(../images/mail_leftbg.gif) repeat-y" />
+			<td style="background: url(/images/mail_leftbg.gif) repeat-y" />
 			<td valign="top" bgcolor="#F7F8F9">
 				<table id="studentdg" style="width: auto; height: auto;">
 
@@ -109,15 +105,15 @@
 					</div>
 				</div>
 			</td>
-			<td style="background: url(../images/mail_rightbg.gif) repeat-y">&nbsp;</td>
+			<td style="background: url(/images/mail_rightbg.gif) repeat-y">&nbsp;</td>
 		</tr>
 		<tr class="noprint">
 			<td valign="bottom"
-				style="background: url(../images/buttom_left2.gif) no-repeat; width: 5px; height: 17px;" />
+				style="background: url(/images/buttom_left2.gif) no-repeat; width: 5px; height: 17px;" />
 			<td
-				style="background: url(../images/buttom_bgs.gif) repeat-x; width: 17px; height: 17px;" />
+				style="background: url(/images/buttom_bgs.gif) repeat-x; width: 17px; height: 17px;" />
 			<td valign="bottom"
-				style="background: url(../images/buttom_right2.gif) no-repeat; width: 5px; height: 17px;" />
+				style="background: url(/images/buttom_right2.gif) no-repeat; width: 5px; height: 17px;" />
 		</tr>
 	</table>
 </body>

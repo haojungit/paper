@@ -11,6 +11,7 @@ import net.dqsy.papermg.util.PagingSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -64,9 +65,9 @@ public class PaperWritingTaskServiceImpl
         return false;
     }
 
-    public PagingSupport find(String hql, int numberOfPage, int countOfPage) {
+    public PagingSupport find(String hql, HashMap<String, Object> map, int numberOfPage, int countOfPage) {
         try {
-            return this.paperWritingTaskDAO.find(hql, numberOfPage, countOfPage);
+            return this.paperWritingTaskDAO.find(hql, map, numberOfPage, countOfPage);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -86,7 +87,7 @@ public class PaperWritingTaskServiceImpl
     public List findByTieleId(int titleId) {
         return this.paperWritingTaskDAO
                 .find("select new com.pactera.papermg.papermanager.vo.WritingTaskVO(writingTaskID,writingTaskStartTime,writingTaskEndTime,writingTaskContent,writingTaskReference) from PaperWritingTask where paperTitle.paperTitleId = " +
-                        titleId, 1, 1).getList();
+                        titleId, null, 1, 1).getList();
     }
 
     public PagingSupport findByProperty(String property, String value, int numberOfPage, int countOfPage) {

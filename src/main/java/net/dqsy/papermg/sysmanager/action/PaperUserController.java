@@ -17,6 +17,7 @@ import java.util.Map;
 
 
 @Controller
+@RequestMapping("/user")
 public class PaperUserController {
     @Autowired
     private PaperUserService paperUserService;
@@ -55,7 +56,7 @@ public class PaperUserController {
 //        return "error";
 //    }
 //
-    @RequestMapping("/user/login")
+    @RequestMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         String randCheckCode = ((String) session.getAttribute("randCheckCode"));

@@ -13,6 +13,7 @@ import net.dqsy.papermg.util.PagingSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -90,9 +91,9 @@ public class PaperTitleServiceImpl
         return false;
     }
 
-    public PagingSupport find(String hql, int numberOfPage, int countOfPage) {
+    public PagingSupport find(String hql, HashMap<String, Object> map, int numberOfPage, int countOfPage) {
         try {
-            return this.paperTitleDAO.find(hql, numberOfPage, countOfPage);
+            return this.paperTitleDAO.find(hql, map, numberOfPage, countOfPage);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -134,7 +135,7 @@ public class PaperTitleServiceImpl
         try {
             return this.paperTitleDAO
                     .find("select new com.pactera.papermg.papermanager.vo.TeacherNameVO(paperTeacher.teacherId,paperTeacher.teacherName) from PaperTitle where paperTitleState.paperTitleState = 1 group by paperTeacher.teacherName",
-                            1, 9999).getList();
+                            null, 1, 9999).getList();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -145,7 +146,7 @@ public class PaperTitleServiceImpl
         try {
             return this.paperTitleDAO.find(
                     "from PaperTitle where paperTitleState.paperTitleState = " +
-                            state, numberOfPage, countOfPage);
+                            state, null, numberOfPage, countOfPage);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -156,7 +157,7 @@ public class PaperTitleServiceImpl
         try {
             return this.paperTitleDAO
                     .find("from PaperTitle where paperTitleState.paperTitleState = 2 and paperTitleLimitMajor = '" +
-                            studentMajor + "'", numberOfPage, countOfPage);
+                            studentMajor + "'", null,  numberOfPage, countOfPage);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -169,7 +170,7 @@ public class PaperTitleServiceImpl
                     .find("select new com.pactera.papermg.papermanager.vo.PaperTitleVO(paperTitleId,paperTitleState.paperTitleState,paperTitleName,paperTeacher.teacherName) from PaperTitle where paperTitleState.paperTitleState >" +
                             state +
                             " and paperStudent.studentId = " +
-                            paperStudentId, 1, 99).getList();
+                            paperStudentId, null, 1, 99).getList();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -182,7 +183,7 @@ public class PaperTitleServiceImpl
                     .find("select new com.pactera.papermg.papermanager.vo.PaperTitleVO(paperTitleId,paperTitleName,paperTitleState.paperTitleState) from PaperTitle where paperTitleState.paperTitleState > " +
                             state +
                             " and paperTeacher.teacherId = " +
-                            paperTeacherId, 1, 99).getList();
+                            paperTeacherId, null, 1, 99).getList();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -194,7 +195,7 @@ public class PaperTitleServiceImpl
             return
                     ((Integer) this.paperTitleDAO
                             .find("select paperTitleState.paperTitleState from PaperTitle where  paperTitleId = " +
-                                    titleId, 1, 1).getList().get(0)).intValue();
+                                    titleId, null, 1, 1).getList().get(0)).intValue();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -205,7 +206,7 @@ public class PaperTitleServiceImpl
         try {
             return this.paperTitleDAO
                     .find("select new com.pactera.papermg.sysmanager.po.PaperStudent(paperStudent.studentId,paperStudent.studentName,paperStudent.studentSex,paperStudent.studentFaculty,paperStudent.studentMajor,paperStudent.studentDirection,paperStudent.studentGrade,paperStudent.studentAge,paperStudent.studentPhone,paperStudent.studentNumber) from PaperTitle where paperTitleId = " +
-                            titleId, 1, 1).getList();
+                            titleId, null, 1, 1).getList();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -322,7 +323,7 @@ public class PaperTitleServiceImpl
     public List<String> findFaculty() {
         String hql = "from PaperStudent group by studentFaculty";
 
-        List list = this.paperTitleDAO.find(hql, 1, 999).getList();
+        List list = this.paperTitleDAO.find(hql, null, 1, 999).getList();
         return list;
     }
 
@@ -333,7 +334,7 @@ public class PaperTitleServiceImpl
         String hql = "from PaperStudent where studentFaculty='" + faculty +
                 "' group by studentMajor";
 
-        List list = this.paperTitleDAO.find(hql, 1, 999).getList();
+        List list = this.paperTitleDAO.find(hql, null, 1, 999).getList();
         System.out.println(((PaperStudent) list.get(0)).getStudentMajor());
         return list;
     }
@@ -342,7 +343,7 @@ public class PaperTitleServiceImpl
         try {
             String hql = "from PaperStudent group by studentGrade";
 
-            List list = this.paperTitleDAO.find(hql, 1, 999).getList();
+            List list = this.paperTitleDAO.find(hql, null, 1, 999).getList();
             System.out.println(((PaperStudent) list.get(0)).getStudentMajor());
             return list;
         } catch (Exception e) {

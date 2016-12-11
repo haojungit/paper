@@ -1,11 +1,13 @@
 package net.dqsy.papermg.util;
 
+import java.util.HashMap;
+
 public abstract interface BaseService {
     public abstract boolean save(Object paramObject);
 
     public abstract boolean update(Object paramObject);
 
-    public abstract PagingSupport find(String paramString, int paramInt1, int paramInt2);
+    public abstract PagingSupport find(String paramString, HashMap<String, Object> map, int paramInt1, int paramInt2);
 
     public abstract Object findById(int paramInt);
 

@@ -69,14 +69,22 @@ function getStudentInfo() {
 		}
 	} ];
 
-	student.findAll(oPage.pageIndex, oPage.pageSize, function(oData) {
-		$('#studentdg').datagrid('loading');
-		// 使用loadDate方法加载Dao层返回的数据
-		$('#studentdg').datagrid('loadData', {
-			"total" : oData.totalCount,
-			"rows" : oData.list
-		});
+    $.ajax({
+		type: 'GET',
+		url: '/admin/student/findAll' ,
+        dataType: 'json' ,
+		data: {"numberOfPage":oPage.pageIndex,"countOfPage":oPage.pageSize} ,
+		success:function(data) {
+			$('#studentdg').datagrid('loading');
+			// 使用loadDate方法加载Dao层返回的数据
+			$('#studentdg').datagrid('loadData', {
+				 "total" : data.totalCount,
+				 "rows" : data.list
+            });
+		}
+
 	});
+
 
 	// 初始化dategrid
 
@@ -232,13 +240,21 @@ function getStudentInfo() {
 			oPage.pageSize = pageSize;
 
 			// 异步获取数据到javascript对象，入参为查询条件和页码信息
-			student.findAll(oPage.pageIndex, oPage.pageSize, function(oData) {
-				// 使用loadDate方法加载DWR返回的数据
-				$('#studentdg').datagrid('loadData', {
-					"total" : oData.totalCount,
-					"rows" : oData.list
-				});
-			});
+            $.ajax({
+                type: 'GET',
+                url: '/admin/student/findAll' ,
+                dataType: 'json' ,
+                data: {"numberOfPage":oPage.pageIndex,"countOfPage":oPage.pageSize} ,
+                success:function(data) {
+                    $('#studentdg').datagrid('loading');
+                    // 使用loadDate方法加载Dao层返回的数据
+                    $('#studentdg').datagrid('loadData', {
+                        "total" : data.totalCount,
+                        "rows" : data.list
+                    });
+                }
+
+            });
 		}
 	});
 }
@@ -268,63 +284,93 @@ function addStudent(infoID) {
 	paperStudent.studentMajor = $('#studentMajor').val();
 	paperStudent.studentDirection = $('#studentDirection').val();
 
-	student.findByNumber(paperStudent.studentNumber, function(date) {
-		if (date == null)
-			student.save(paperStudent, function(msg) {
-				if (msg != true) {
-					$.messager.alert('系統提示', '保存失败!', 'error');
-					return;
-				} else {
-					studentReload();
-					$('#addStudent').dialog('close'); // close the dialog
-				}
-				$('#studentSave').linkbutton("enable");
-			});
-		else {
-			$.messager.alert('系統提示', '学生学号已存在!', 'error');
-			return;
-		}
-	});
+    $.ajax({
+        type: 'GET',
+        url: '/admin/student/findByNumber',
+        dataType: 'json',
+        data: {"number": paperStudent.studentNumber},
+        success: function (data) {
+            if (data == null) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/admin/student/save',
+                    dataType: 'json',
+                    data: paperStudent,
+                    success: function (msg) {
+                        if (msg != true) {
+                            $.messager.alert('系統提示', '保存失败!', 'error');
+                            //return;
+                        } else {
+                            studentReload();
+                            $('#addStudent').dialog('close'); // close the dialog
+                        }
+                        $('#studentSave').linkbutton("enable");
+                    }
+
+                });
+            } else {
+                $.messager.alert('系統提示', '学生学号已存在!', 'error');
+                $('#studentSave').linkbutton("enable");
+                return;
+            }
+        }
+
+    });
 }
 
 function updateStudent(studentID) {
-	alert(studentID);
-
 	if (!$('#studentform').form('validate'))
 		return false;
 
 	$('#studentSave').linkbutton("disable");
 
 	$('#studentdg').datagrid('loading');
-	var studentName = $('#studentName').val();
-	var studentSex = $('#studentSex').val();
-	var studentAge = $('#studentAge').val();
-	var studentPhone = $('#studentPhone').val();
-	var studentGrade = $('#studentGrade').val();
-	var studentFaculty = $('#studentFaculty').val();
-	var studentMajor = $('#studentMajor').val();
-	var studentDirection = $('#studentDirection').val();
 
-	student.findById(studentID, function(paperStudent) {
-		paperStudent.studentName = studentName;
-		paperStudent.studentSex = studentSex;
-		paperStudent.studentAge = studentAge;
-		paperStudent.studentPhone = studentPhone;
-		paperStudent.studentGrade = studentGrade;
-		paperStudent.studentFaculty = studentFaculty;
-		paperStudent.studentMajor = studentMajor;
-		paperStudent.studentDirection = studentDirection;
-		student.update(paperStudent, function(msg) {
-			if (msg != true) {
-				$.messager.alert('系統提示', '更新失败!', 'error');
-				return;
-			} else {
-				studentReload();
-				$('#addStudent').dialog('close');
-			}
-			$('#studentSave').linkbutton("enable");
-		});
-	});
+    $.ajax({
+        type: 'GET',
+        url: '/admin/student/findById',
+        dataType: 'json',
+        data: {"id": studentID},
+        success: function (paperStudent) {
+
+            var studentName = $('#studentName').val();
+            var studentSex = $('#studentSex').val();
+            var studentAge = $('#studentAge').val();
+            var studentPhone = $('#studentPhone').val();
+            var studentGrade = $('#studentGrade').val();
+            var studentFaculty = $('#studentFaculty').val();
+            var studentMajor = $('#studentMajor').val();
+            var studentDirection = $('#studentDirection').val();
+            paperStudent.studentName = studentName;
+            paperStudent.studentSex = studentSex;
+            paperStudent.studentAge = studentAge;
+            paperStudent.studentPhone = studentPhone;
+            paperStudent.studentGrade = studentGrade;
+            paperStudent.studentFaculty = studentFaculty;
+            paperStudent.studentMajor = studentMajor;
+            paperStudent.studentDirection = studentDirection;
+
+            $.ajax({
+                type: 'POST',
+                url: '/admin/student/update',
+                dataType: 'json',
+                data: paperStudent,
+                success: function (msg) {
+                    if (msg != true) {
+                        $.messager.alert('系統提示', '更新失败!', 'error');
+                        return;
+                    } else {
+                        studentReload();
+                        $('#addStudent').dialog('close');
+                    }
+                    $('#studentSave').linkbutton("enable");
+                }
+
+            });
+
+        }
+
+    });
 }
 
 function updateStudentFlag(studentID) {
@@ -417,13 +463,21 @@ function resetStudentPassword(studentID) {
 
 function studentReload() {
 	var options = $('#studentdg').datagrid('getPager').data('pagination').options;
-	student.findAll(options.pageNumber, options.pageSize, function(oData) {
-		// 使用loadDate方法加载DWR返回的数据
-		$('#studentdg').datagrid('loadData', {
-			"total" : oData.totalCount,
-			"rows" : oData.list
-		});
-	});
+    $.ajax({
+        type: 'GET',
+        url: '/admin/student/findAll' ,
+        dataType: 'json' ,
+        data: {"numberOfPage":options.pageNumber,"countOfPage":options.pageSize} ,
+        success:function(data) {
+            $('#studentdg').datagrid('loading');
+            // 使用loadDate方法加载Dao层返回的数据
+            $('#studentdg').datagrid('loadData', {
+                "total" : data.totalCount,
+                "rows" : data.list
+            });
+        }
+
+    });
 }
 
 function doSearchStudent(value, name) {

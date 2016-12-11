@@ -8,6 +8,8 @@ import net.dqsy.papermg.util.PaperManagerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+
 @Service
 public class PaperTitleStateServiceImpl
         implements PaperTitleStateService
@@ -35,9 +37,9 @@ public class PaperTitleStateServiceImpl
         return true;
     }
 
-    public PagingSupport find(String hql, int numberOfPage, int countOfPage) {
+    public PagingSupport find(String hql, HashMap<String, Object> map, int numberOfPage, int countOfPage) {
         try {
-            return this.paperTitleStateDAO.find(hql, numberOfPage, countOfPage);
+            return this.paperTitleStateDAO.find(hql, map, numberOfPage, countOfPage);
         } catch (Exception e) {
             e.printStackTrace();
         }

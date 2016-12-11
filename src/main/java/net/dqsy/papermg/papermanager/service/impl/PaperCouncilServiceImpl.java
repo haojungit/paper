@@ -18,6 +18,7 @@ import net.dqsy.papermg.util.PagingSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -59,9 +60,9 @@ public class PaperCouncilServiceImpl
         return false;
     }
 
-    public PagingSupport find(String hql, int numberOfPage, int countOfPage) {
+    public PagingSupport find(String hql, HashMap<String, Object> map, int numberOfPage, int countOfPage) {
         try {
-            return this.paperCouncilDAO.find(hql, numberOfPage, countOfPage);
+            return this.paperCouncilDAO.find(hql, map, numberOfPage, countOfPage);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -170,7 +171,7 @@ public class PaperCouncilServiceImpl
                         list = this.paperUserRoleService.find(
                                 "from PaperUserRole where paperUser.userId = " +
                                         userId + " and paperRole.roleId = 3",
-                                1, 1).getList();
+                                null, 1, 1).getList();
 
                         if (list.size() != 0) {
                             continue;

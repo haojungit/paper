@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 @Repository
@@ -25,12 +27,22 @@ public class BaseDAOImpl extends HibernateDaoSupport implements BaseDAO {
     }
 
 
-    public PagingSupport queryForPage(final String hql, final int numberOfPage, final int length) {
+    public PagingSupport queryForPage(final String hql, final HashMap<String, Object> map, final int numberOfPage, final int length) {
         List list = this.getHibernateTemplate().executeFind(new HibernateCallback() {
 
             @Override
             public Object doInHibernate(Session session) throws HibernateException, SQLException {
                 Query query = session.createQuery(hql);
+                if(map != null){
+                    Iterator it = map.keySet().iterator();
+                    while (it.hasNext()) {
+                        String key;
+                        Object value;
+                        key = it.next().toString();
+                        value = map.get(key);
+                        query.setParameter(key, value);
+                    }
+                }
                 BaseDAOImpl.this.totalCount = query.list().size();
                 query.setFirstResult((numberOfPage - 1) * length);
                 query.setMaxResults(length);
@@ -54,21 +66,21 @@ public class BaseDAOImpl extends HibernateDaoSupport implements BaseDAO {
         this.logger.info(getHibernateTemplate().getSessionFactory().getCurrentSession().getStatistics());
     }
 
-    public PagingSupport find(String hql, int numberOfPage, int countOfPage) throws PaperManagerException {
-        return queryForPage(hql, numberOfPage, countOfPage);
+    public PagingSupport find(String hql, HashMap<String, Object> map, int numberOfPage, int countOfPage) throws PaperManagerException {
+        return queryForPage(hql, map, numberOfPage, countOfPage);
     }
 
-    public Object findById(String classs, int id) throws PaperManagerException {
-        return getHibernateTemplate().get(classs, Integer.valueOf(id));
+    public Object findById(Object object, int id) throws PaperManagerException {
+        return getHibernateTemplate().get(object.getClass(), Integer.valueOf(id));
     }
 
     public PagingSupport findByProperty(String table, String property, String value, int numberOfPage, int countOfPage)
             throws PaperManagerException {
-        return queryForPage("from " + table + " where " + property + " = '" + value + "'", numberOfPage, countOfPage);
+        return queryForPage("from " + table + " where " + property + " = '" + value + "'", null, numberOfPage, countOfPage);
     }
 
     public PagingSupport findAll(String table, int numberOfPage, int countOfPage) throws PaperManagerException {
-        return queryForPage("from " + table, numberOfPage, countOfPage);
+        return queryForPage("from " + table, null, numberOfPage, countOfPage);
     }
 
     public void delete(Object o) throws PaperManagerException {
@@ -79,6 +91,6 @@ public class BaseDAOImpl extends HibernateDaoSupport implements BaseDAO {
 
     public PagingSupport findByProperty(String table, String property, int value, int numberOfPage, int countOfPage)
             throws PaperManagerException {
-        return queryForPage("from " + table + " where " + property + " = " + value, numberOfPage, countOfPage);
+        return queryForPage("from " + table + " where " + property + " = " + value, null, numberOfPage, countOfPage);
     }
 }
