@@ -326,54 +326,41 @@ function updateStudent(studentID) {
 
 	$('#studentdg').datagrid('loading');
 
+    var paperStudent = {};
+    paperStudent.studentNumber = $('#studentNumber').val();
+    paperStudent.studentName = $('#studentName').val();
+    paperStudent.studentSex = $('#studentSex').val();
+    paperStudent.studentAge = $('#studentAge').val();
+    paperStudent.studentPhone = $('#studentPhone').val();
+    paperStudent.studentGrade = $('#studentGrade').val();
+    paperStudent.studentFaculty = $('#studentFaculty').val();
+    paperStudent.studentMajor = $('#studentMajor').val();
+    paperStudent.studentDirection = $('#studentDirection').val();
+    paperStudent.studentId = studentID;
     $.ajax({
-        type: 'GET',
-        url: '/admin/student/findById',
+        type: 'POST',
+        url: '/admin/student/update',
         dataType: 'json',
-        data: {"id": studentID},
-        success: function (paperStudent) {
-
-            var studentName = $('#studentName').val();
-            var studentSex = $('#studentSex').val();
-            var studentAge = $('#studentAge').val();
-            var studentPhone = $('#studentPhone').val();
-            var studentGrade = $('#studentGrade').val();
-            var studentFaculty = $('#studentFaculty').val();
-            var studentMajor = $('#studentMajor').val();
-            var studentDirection = $('#studentDirection').val();
-            paperStudent.studentName = studentName;
-            paperStudent.studentSex = studentSex;
-            paperStudent.studentAge = studentAge;
-            paperStudent.studentPhone = studentPhone;
-            paperStudent.studentGrade = studentGrade;
-            paperStudent.studentFaculty = studentFaculty;
-            paperStudent.studentMajor = studentMajor;
-            paperStudent.studentDirection = studentDirection;
-
-            $.ajax({
-                type: 'POST',
-                url: '/admin/student/update',
-                dataType: 'json',
-                data: paperStudent,
-                success: function (msg) {
-                    if (msg != true) {
-                        $.messager.alert('系統提示', '更新失败!', 'error');
-                        return;
-                    } else {
-                        studentReload();
-                        $('#addStudent').dialog('close');
-                    }
-                    $('#studentSave').linkbutton("enable");
-                }
-
-            });
-
+        data: paperStudent,
+        success: function (msg) {
+            if (msg != true) {
+                $.messager.alert('系統提示', '更新失败!', 'error');
+                return;
+            } else {
+                studentReload();
+                $('#addStudent').dialog('close');
+            }
+            $('#studentSave').linkbutton("enable");
         }
 
     });
+
 }
 
 function updateStudentFlag(studentID) {
+
+
+
 
 	student.findById(studentID, function(paperStudent) {
 		var flag = 1;

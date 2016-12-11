@@ -12,7 +12,7 @@ public abstract interface BaseDAO {
     public abstract PagingSupport find(String paramString, HashMap<String, Object> map, int paramInt1, int paramInt2)
             throws PaperManagerException;
 
-    public abstract Object findById(Object object, int paramInt)
+    public abstract Object findById(String object, int paramInt)
             throws PaperManagerException;
 
     public abstract PagingSupport findByProperty(String paramString1, String paramString2, String paramString3, int paramInt1, int paramInt2)

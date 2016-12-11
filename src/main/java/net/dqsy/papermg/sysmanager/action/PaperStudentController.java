@@ -41,16 +41,29 @@ public class PaperStudentController {
                 session.setAttribute("student", paperStudent);
             }
         }
-        return this.paperStudentService.update(paperStudent);
+
+        PaperStudent oldStudent = (PaperStudent) this.paperStudentService.findById(paperStudent.getStudentId());
+
+        oldStudent.setStudentName(paperStudent.getStudentName());
+        oldStudent.setStudentSex(paperStudent.getStudentSex());
+        oldStudent.setStudentAge(paperStudent.getStudentAge());
+        oldStudent.setStudentNumber(paperStudent.getStudentNumber());
+        oldStudent.setStudentGrade(paperStudent.getStudentGrade());
+        oldStudent.setStudentFaculty(paperStudent.getStudentFaculty());
+        oldStudent.setStudentMajor(paperStudent.getStudentMajor());
+        oldStudent.setStudentDirection(paperStudent.getStudentDirection());
+        return this.paperStudentService.update(oldStudent);
     }
 //
 //    public String importStudent(String path) {
 //        return this.paperStudentService.importStudent(path);
 //    }
-//
-//    public boolean updateStudentFlag(PaperStudent paperStudent, int flag) {
-//        return this.paperStudentService.updateStudentFlag(paperStudent, flag);
-//    }
+    @RequestMapping("/updateStudentFlag")
+    @ResponseBody
+    public boolean updateStudentFlag(int StudentId, int flag) {
+        PaperStudent paperStudent = (PaperStudent) this.paperStudentService.findById(StudentId);
+        return this.paperStudentService.updateStudentFlag(paperStudent, flag);
+    }
 //
 //    public boolean resetStudentPassword(int studentId) {
 //        return this.paperStudentService.resetStudentPassword(studentId);

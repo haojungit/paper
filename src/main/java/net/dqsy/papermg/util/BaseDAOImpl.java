@@ -70,8 +70,8 @@ public class BaseDAOImpl extends HibernateDaoSupport implements BaseDAO {
         return queryForPage(hql, map, numberOfPage, countOfPage);
     }
 
-    public Object findById(Object object, int id) throws PaperManagerException {
-        return getHibernateTemplate().get(object.getClass(), Integer.valueOf(id));
+    public Object findById(String object, int id) throws PaperManagerException {
+        return getHibernateTemplate().get(object, Integer.valueOf(id));
     }
 
     public PagingSupport findByProperty(String table, String property, String value, int numberOfPage, int countOfPage)

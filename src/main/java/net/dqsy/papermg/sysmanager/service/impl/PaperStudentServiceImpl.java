@@ -182,7 +182,7 @@ public class PaperStudentServiceImpl
     public PaperStudent findById(int id) {
         try {
             return (PaperStudent) this.paperStudentDAO.findById(
-                    PaperStudent.class, id);
+                    "net.dqsy.papermg.sysmanager.po.PaperStudent", id);
         } catch (PaperManagerException e) {
             e.printStackTrace();
         }
