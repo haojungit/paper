@@ -126,7 +126,7 @@ public class PaperUserController {
 
         session.setAttribute("navi", navi);
 
-        return "/index";
+        return "redirect:/index";
     }
 //
 //    public String updatePassword(String userName, String oldPassWord, String newPassWord) {
