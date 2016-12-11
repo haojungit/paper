@@ -1,7 +1,9 @@
 package net.dqsy.papermg.util;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import javax.imageio.ImageIO;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,9 +15,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
+@Controller
 public class SnowCheckCode extends HttpServlet {
-    public void service(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+
+    @RequestMapping("/SnowCheckCode")
+    public void checkCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setHeader("Pragma", "No-cache");
         response.setHeader("Cache-Control", "No-cache");
         response.setDateHeader("Expires", 0L);
@@ -66,13 +70,6 @@ public class SnowCheckCode extends HttpServlet {
         session.setAttribute("randCheckCode", sRand);
         g.dispose();
         ImageIO.write(image, "JPEG", response.getOutputStream());
-    }
 
-    public void destroy() {
-        super.destroy();
-    }
-
-    public void init()
-            throws ServletException {
     }
 }

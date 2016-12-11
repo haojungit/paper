@@ -213,7 +213,7 @@ input {
 							name="passWord"> <br /> <br /> <label>验证码：</label><input
 							id="checkCode" name="checkCode" type="text" id="checkCode"
 							title="验证码不区分大小写" style="width: 100px;" maxlength="4" />
-						&nbsp;&nbsp;<img src="SnowCheckCode"
+						&nbsp;&nbsp;<img src="/SnowCheckCode"
 							style="width: 100px; height: 30px; border: 0; vertical-align: middle; margin: 0; cursor: pointer;"
 							name="snowCheckCode" id="snowCheckCode" onClick="myReload()" />
 						<label id="checkCodeMsg" style="color: red;"> <c:out

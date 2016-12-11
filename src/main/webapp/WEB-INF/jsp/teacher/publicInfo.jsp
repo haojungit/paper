@@ -27,7 +27,7 @@
 		登录超时,如果本页面不支持跳转请<a href='../login.jsp'>点击这里</a>
 	<script>
 		alert("登陆超时!");
-		top.location.href = '../login.jsp';
+		top.location.href = '../../../login.jsp';
 	</script>
 </c:if>
 <tr>

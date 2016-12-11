@@ -11,7 +11,7 @@
 			BORDERCOLORDARK="#b1c9ff">
 
 
-			<jsp:include page="../teacher/publicInfo.jsp"></jsp:include>
+			<jsp:include page="publicInfo.jsp"></jsp:include>
 
 
 			<tr>

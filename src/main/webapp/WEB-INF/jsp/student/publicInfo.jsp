@@ -57,6 +57,6 @@
 <c:if test="${empty student}">
 			登录超时,如果本页面不支持跳转请<a href='../login.jsp'>点击这里</a>
 	<script>
-		top.location.href = '../login.jsp';
+		top.location.href = '../../../login.jsp';
 	</script>
 </c:if>
