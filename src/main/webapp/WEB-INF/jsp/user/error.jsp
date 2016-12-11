@@ -14,6 +14,6 @@
 </head>
 <body>
 	亲,登录失败！请
-	<a href="./index.jsp">登录</a>
+	<a href="../index.jsp">登录</a>
 </body>
 </html>

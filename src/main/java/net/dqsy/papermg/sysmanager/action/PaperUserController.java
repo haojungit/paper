@@ -1,20 +1,33 @@
 package net.dqsy.papermg.sysmanager.action;
 
+import net.dqsy.papermg.sysmanager.po.*;
+import net.dqsy.papermg.sysmanager.service.*;
+import net.dqsy.papermg.sysmanager.vo.LoginVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @Controller
 public class PaperUserController {
-//    @Autowired
-//    private PaperUserService paperUserService;
-//    @Autowired
-//    private PaperRoleService paperRoleService;
-//    @Autowired
-//    private PaperPermissionService paperPermissionService;
-//    @Autowired
-//    private PaperUserRoleService paperUserRoleService;
-//    @Autowired
-//    private PaperRolePermissionService paperRolePermissionService;
+    @Autowired
+    private PaperUserService paperUserService;
+    @Autowired
+    private PaperRoleService paperRoleService;
+    @Autowired
+    private PaperPermissionService paperPermissionService;
+    @Autowired
+    private PaperUserRoleService paperUserRoleService;
+    @Autowired
+    private PaperRolePermissionService paperRolePermissionService;
 //
 //    @RequestMapping(value = "/user/logout")
 //    public String logout(HttpServletRequest request, HttpServletResponse response) {
@@ -42,75 +55,79 @@ public class PaperUserController {
 //        return "error";
 //    }
 //
-//    @RequestMapping("/user/login")
-//    public String login(HttpServletRequest request, HttpServletResponse response) {
-//        HttpSession session = request.getSession();
-//        String low_randCheckCode = ((String) session.getAttribute("randCheckCode")).toLowerCase();
-//
-//        String checkCode = request.getParameter("checkCode");
-//        String userName = request.getParameter("userName");
-//        String passWord = request.getParameter("passWord");
-//        if (!low_randCheckCode.equals(checkCode.toLowerCase())) {
-//            session.setAttribute("checkCodeError", "验证码不正确");
-//            return "LOGIN";
-//        }
-//
-//        List loginVoList = this.paperUserService.login(userName, passWord);
-//        LoginVO loginVO = (LoginVO) loginVoList.get(0);
-//
-//        if ((loginVO == null) || (loginVO.getFlag().intValue() == 0)) {
-//            return "LOGIN";
-//        }
-//        PaperUser paperUser = new PaperUser(loginVO.getUserId(), loginVO.getUsername(), loginVO.getPassword(),
-//                loginVO.getIdentity(), loginVO.getFlag());
-//
-//        session.setAttribute("user", paperUser);
-//
-//        if (paperUser.getIdentity().equals("同学")) {
-//            PaperStudent paperStudent = new PaperStudent(loginVO.getStudentid(), loginVO.getStudentname(),
-//                    loginVO.getStudentsex(), loginVO.getStudentFaculty(), loginVO.getStudentMajor(),
-//                    loginVO.getStudentDirection(), loginVO.getStudentGrade(), loginVO.getStudentAge(),
-//                    loginVO.getStudentPhone(), loginVO.getStudentNumber());
-//            session.setAttribute("student", paperStudent);
-//            if (session.getAttribute("teacher") != null)
-//                session.removeAttribute("teacher");
-//        } else {
-//            PaperTeacher paperTeacher = new PaperTeacher(loginVO.getTeacherid(), loginVO.getTeacherName(),
-//                    loginVO.getTeacherSex(), loginVO.getTeacherAge(), loginVO.getTeacherUnits(),
-//                    loginVO.getTeacherMajor(), loginVO.getTeacherDirection(), loginVO.getTeacherEducation(),
-//                    loginVO.getTeacherJobTitle(), loginVO.getTeacherPhone(), loginVO.getTeacherNumber());
-//            session.setAttribute("teacher", paperTeacher);
-//            if (session.getAttribute("student") != null) {
-//                session.removeAttribute("student");
-//            }
-//        }
-//
-//        PaperRole paperRole = new PaperRole(loginVO.getRoleid(), loginVO.getRoleName(), loginVO.getDescription());
-//        session.setAttribute("paperRole", paperRole);
-//
-//        Map navi = new LinkedHashMap();
-//        PaperPermission paperPermission = null;
-//        List list = null;
-//        String description = null;
-//        LoginVO lVo = null;
-//        for (int i = 0; i < loginVoList.size(); i++) {
-//            lVo = (LoginVO) loginVoList.get(i);
-//            description = lVo.getDescription();
-//            paperPermission = new PaperPermission(lVo.getId(), lVo.getPermission(), lVo.getPdescription());
-//
-//            if (!navi.containsKey(description))
-//                list = new ArrayList();
-//            else {
-//                list = (List) navi.get(description);
-//            }
-//            list.add(paperPermission);
-//            navi.put(description, list);
-//        }
-//
-//        session.setAttribute("navi", navi);
-//
-//        return "SUCCESS";
-//    }
+    @RequestMapping("/user/login")
+    public String login(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        String randCheckCode = ((String) session.getAttribute("randCheckCode"));
+        if(randCheckCode == null){
+            return "/user/login";
+        }
+        String low_randCheckCode = randCheckCode.toLowerCase();
+
+        String checkCode = request.getParameter("checkCode");
+        String userName = request.getParameter("userName");
+        String passWord = request.getParameter("passWord");
+        if (!low_randCheckCode.equals(checkCode.toLowerCase())) {
+            request.setAttribute("checkCodeError","验证码不正确");
+            return "/user/login";
+        }
+
+        List loginVoList = this.paperUserService.login(userName, passWord);
+        LoginVO loginVO = (LoginVO) loginVoList.get(0);
+
+        if ((loginVO == null) || (loginVO.getFlag().intValue() == 0)) {
+            return "/user/login";
+        }
+        PaperUser paperUser = new PaperUser(loginVO.getUserId(), loginVO.getUsername(), loginVO.getPassword(),
+                loginVO.getIdentity(), loginVO.getFlag());
+
+        session.setAttribute("user", paperUser);
+
+        if (paperUser.getIdentity().equals("同学")) {
+            PaperStudent paperStudent = new PaperStudent(loginVO.getStudentid(), loginVO.getStudentname(),
+                    loginVO.getStudentsex(), loginVO.getStudentFaculty(), loginVO.getStudentMajor(),
+                    loginVO.getStudentDirection(), loginVO.getStudentGrade(), loginVO.getStudentAge(),
+                    loginVO.getStudentPhone(), loginVO.getStudentNumber());
+            session.setAttribute("student", paperStudent);
+            if (session.getAttribute("teacher") != null)
+                session.removeAttribute("teacher");
+        } else {
+            PaperTeacher paperTeacher = new PaperTeacher(loginVO.getTeacherid(), loginVO.getTeacherName(),
+                    loginVO.getTeacherSex(), loginVO.getTeacherAge(), loginVO.getTeacherUnits(),
+                    loginVO.getTeacherMajor(), loginVO.getTeacherDirection(), loginVO.getTeacherEducation(),
+                    loginVO.getTeacherJobTitle(), loginVO.getTeacherPhone(), loginVO.getTeacherNumber());
+            session.setAttribute("teacher", paperTeacher);
+            if (session.getAttribute("student") != null) {
+                session.removeAttribute("student");
+            }
+        }
+
+        PaperRole paperRole = new PaperRole(loginVO.getRoleid(), loginVO.getRoleName(), loginVO.getDescription());
+        session.setAttribute("paperRole", paperRole);
+
+        Map navi = new LinkedHashMap();
+        PaperPermission paperPermission = null;
+        List list = null;
+        String description = null;
+        LoginVO lVo = null;
+        for (int i = 0; i < loginVoList.size(); i++) {
+            lVo = (LoginVO) loginVoList.get(i);
+            description = lVo.getDescription();
+            paperPermission = new PaperPermission(lVo.getId(), lVo.getPermission(), lVo.getPdescription());
+
+            if (!navi.containsKey(description))
+                list = new ArrayList();
+            else {
+                list = (List) navi.get(description);
+            }
+            list.add(paperPermission);
+            navi.put(description, list);
+        }
+
+        session.setAttribute("navi", navi);
+
+        return "/index";
+    }
 //
 //    public String updatePassword(String userName, String oldPassWord, String newPassWord) {
 //        return this.paperUserService.updatePassword(userName, oldPassWord, newPassWord);

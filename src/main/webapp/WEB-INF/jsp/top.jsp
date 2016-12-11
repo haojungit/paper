@@ -47,9 +47,9 @@
 					</c:if>
 					<!-- 没用过滤器前的JS模拟控制 -->
 					<c:if test="${empty user}">
-					您还没有登录,如果本页面不支持跳转请<a href='login.jsp'>点击这里</a>
+					您还没有登录,如果本页面不支持跳转请<a href='../../login.jsp'>点击这里</a>
 						<script>
-							top.location.href = 'login.jsp';
+							top.location.href = '../../login.jsp';
 						</script>
 					</c:if>
 					<tr>

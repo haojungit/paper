@@ -14,15 +14,15 @@
 <title>index</title>
 </head>
 <frameset rows="64,*" frameborder="NO" border="0" framespacing="0">
-	<frame src="top.jsp" noresize="noresize" frameborder="NO"
-		name="topFrame" scrolling="no" marginwidth="0" marginheight="0"
-		target="main" />
+	<frame src="/top" noresize="noresize" frameborder="NO"
+           name="topFrame" scrolling="no" marginwidth="0" marginheight="0"
+           target="main" />
 	<frameset cols="200,*" rows="860,*" id="frame">
-		<frame src="left.jsp" id="leftFrame" name="leftFrame"
-			noresize="noresize" marginwidth="0" scrolling="auto" marginheight="0"
-			frameborder="0" scrolling="no" target="main" />
-		<frame src="right.jsp" name="mainFrame" marginwidth="0"
-			marginheight="0" frameborder="0" scrolling="auto" target="_self" />
+		<frame src="/left" id="leftFrame" name="leftFrame"
+               noresize="noresize" marginwidth="0" scrolling="auto" marginheight="0"
+               frameborder="0" scrolling="no" target="main" />
+		<frame src="/right" name="mainFrame" marginwidth="0"
+               marginheight="0" frameborder="0" scrolling="auto" target="_self" />
 	</frameset>
 </frameset>
 <body>
