@@ -90,9 +90,9 @@
 							type="button" value="上传" onclick="studentUploadExcel();" /> <input
 							type="button" value="导入" onclick="importStudent();" />
 					</form>
-					模版下载：<br /> <br /> <a href="../upload/bulkImportTemplate/student.xls">Excel
+					模版下载：<br /> <br /> <a href="/upload/bulkImportTemplate/student.xls">Excel
 						2003版本</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
-						href="../upload/bulkImportTemplate/student.xlsx">Excel 2007版本</a>
+						href="/upload/bulkImportTemplate/student.xlsx">Excel 2007版本</a>
 				</div>
 
 				<div id="searchStudent" style="display: inline;">

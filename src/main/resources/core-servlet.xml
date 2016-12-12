@@ -32,6 +32,7 @@
     <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
     <mvc:resources location="/WEB-INF/images/" mapping="/images/**"/>
     <mvc:resources location="/WEB-INF/jquery-easyui/" mapping="/jquery-easyui/**"/>
+    <mvc:resources location="/upload/" mapping="/upload/**"/>
 
     <!--视图解析器-->
     <bean id="viewResolver"
